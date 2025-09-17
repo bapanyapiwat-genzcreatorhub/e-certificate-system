@@ -1,0 +1,82 @@
+/* ตั้งค่าพื้นฐานและฟอนต์ */
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom, #00a2ff, #007bff); /* ไล่สีพื้นหลัง */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* กล่องหลักที่ครอบทุกอย่าง */
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* ส่วนหัว */
+header {
+    color: white;
+    margin-bottom: 2rem;
+}
+
+/* ปรับขนาดโลโก้ในส่วน header */
+header img {
+    max-height: 150px; /* กำหนดความสูงสูงสุดของโลโก้ */
+    width: auto;      /* ปรับความกว้างอัตโนมัติตามอัตราส่วนเดิม */
+}
+
+header h2 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+/* การ์ดสีขาวตรงกลาง */
+.card {
+    background-color: white;
+    border-radius: 20px; /* ทำให้ขอบมน */
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+}
+
+.card .icon {
+    font-size: 3rem;
+    background-color: #f0f4f8;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+}
+
+/* กล่องข้อมูลเวลาและจำนวนข้อ */
+.info-box {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+/* ปุ่มกด */
+.action-button {
+    background: linear-gradient(to right, #24c6dc, #514a9d);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+    cursor: pointer; /* เปลี่ยนเมาส์เป็นรูปมือ */
+    width: 100%;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.action-button:hover {
+    transform: scale(1.03); /* ขยายเล็กน้อยเมื่อเอาเมาส์ไปชี้ */
+}
