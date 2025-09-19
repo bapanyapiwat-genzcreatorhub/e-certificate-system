@@ -1,33 +1,34 @@
-/* ตั้งค่าพื้นฐานและฟอนต์ */
+/* --- Global Styles & Setup --- */
 body {
     font-family: 'Kanit', sans-serif;
     margin: 0;
-    background: linear-gradient(to bottom, #00a2ff, #007bff); /* ไล่สีพื้นหลัง */
+    background: linear-gradient(to bottom, #eae4ff, #d2c8ff);
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-/* กล่องหลักที่ครอบทุกอย่าง */
+/* --- Layout --- */
 .container {
     text-align: center;
     width: 100%;
     max-width: 600px;
 }
 
-/* ส่วนหัว */
+/* --- Header Styles --- */
 header {
-    color: white;
+    color: #3f3f5a;
     margin-bottom: 2rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* ปรับขนาดโลโก้ในส่วน header */
 header img {
-    max-height: 150px; /* กำหนดความสูงสูงสุดของโลโก้ */
-    width: auto;      /* ปรับความกว้างอัตโนมัติตามอัตราส่วนเดิม */
+    max-height: 80px;
+    width: auto;
 }
 
 header h2 {
@@ -35,12 +36,13 @@ header h2 {
     margin: 0.5rem 0;
 }
 
-/* การ์ดสีขาวตรงกลาง */
+/* --- Card Styles --- */
 .card {
     background-color: white;
-    border-radius: 20px; /* ทำให้ขอบมน */
+    border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .card .icon {
@@ -53,30 +55,267 @@ header h2 {
     margin: 0 auto 20px auto;
 }
 
-/* กล่องข้อมูลเวลาและจำนวนข้อ */
+/* --- Info Box on Landing Page --- */
 .info-box {
     background-color: #f8f9fa;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 15px 20px;
     margin: 30px 0;
     text-align: left;
 }
 
-/* ปุ่มกด */
+/* --- General Form Styles --- */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.progress-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out;
+}
+
+form h4 {
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    border-left: 4px solid #8e2de2;
+    padding-left: 10px;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- Button Styles --- */
 .action-button {
-    background: linear-gradient(to right, #24c6dc, #514a9d);
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
     color: white;
     border: none;
     border-radius: 10px;
     padding: 15px 30px;
     font-size: 1rem;
     font-family: 'Kanit', sans-serif;
-    cursor: pointer; /* เปลี่ยนเมาส์เป็นรูปมือ */
+    cursor: pointer;
     width: 100%;
     font-weight: bold;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .action-button:hover {
-    transform: scale(1.03); /* ขยายเล็กน้อยเมื่อเอาเมาส์ไปชี้ */
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(74, 0, 224, 0.4);
+}
+
+.back-button {
+    background: none;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #f8f9fa;
+}
+
+/* --- Summary Box Styles --- */
+.summary-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.summary-right {
+    text-align: right;
+    flex-shrink: 0;
+    padding-left: 1rem;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.2rem 0;
+}
+
+/* --- Likert Scale Styles --- */
+.likert-group {
+    background-color: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.likert-group > label {
+    font-weight: bold;
+    color: #333;
+}
+
+.likert-scale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+    flex-direction: row-reverse; /* สลับสเกล 5-1 */
+}
+
+.likert-scale span {
+    font-size: 0.8rem;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.likert-scale label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* --- Certificate Confirmation Styles --- */
+.confirmation-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: left;
+    font-family: monospace;
+    line-height: 1.6;
+    color: #333;
+}
+
+.consent-group {
+    text-align: left;
+    margin: 1.5rem 0;
+}
+
+.consent-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.button-group .back-button {
+    flex-grow: 1;
+}
+
+.button-group .action-button {
+    flex-grow: 2;
+}
+
+/* --- Prettier Confirmation Box --- */
+.confirmation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Kanit', sans-serif; /* Use the main font */
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.confirmation-box td {
+    padding: 8px 4px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.confirmation-box tr:last-child td {
+    border-bottom: none;
+}
+
+.confirmation-box td:first-child {
+    font-weight: bold;
+    padding-right: 15px;
+    color: #555;
+    width: 1%;
+    white-space: nowrap;
 }
