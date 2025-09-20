@@ -291,11 +291,11 @@ form h4 {
     flex-grow: 2;
 }
 
-/* --- Prettier Confirmation Box --- */
+/* --- Prettier Confirmation Box (Updated for Responsiveness) --- */
 .confirmation-box table {
     width: 100%;
     border-collapse: collapse;
-    font-family: 'Kanit', sans-serif; /* Use the main font */
+    font-family: 'Kanit', sans-serif;
     font-size: 1rem;
     line-height: 1.8;
 }
@@ -315,8 +315,8 @@ form h4 {
     font-weight: bold;
     padding-right: 15px;
     color: #555;
-    width: 1%;
-    white-space: nowrap;
+    width: 1%; /* ทำให้คอลัมน์นี้แคบที่สุดเท่าที่จำเป็น */
+    white-space: nowrap; /* บังคับให้หัวข้อไม่ตัดคำขึ้นบรรทัดใหม่ */
 }
 
 /* --- Success Card Styles --- */
@@ -341,38 +341,4 @@ form h4 {
 
 #success-card .button-group {
     flex-direction: column;
-}
-
-/* --- Responsive Table for Confirmation Box --- */
-@media (max-width: 480px) {
-    .confirmation-box table, 
-    .confirmation-box tbody, 
-    .confirmation-box tr, 
-    .confirmation-box td {
-        display: block;
-        width: 100% !important;
-    }
-
-    .confirmation-box tr {
-        border-bottom: 1px solid #eee;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-    
-    .confirmation-box tr:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-    }
-
-    .confirmation-box td {
-        border: none;
-        padding: 4px 0;
-    }
-
-    .confirmation-box td:first-child {
-        padding-right: 0;
-        white-space: normal;
-        color: #888;
-        font-size: 0.8rem;
-    }
 }
