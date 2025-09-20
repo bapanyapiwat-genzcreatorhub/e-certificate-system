@@ -342,3 +342,40 @@ form h4 {
 #success-card .button-group {
     flex-direction: column;
 }
+
+/* --- Certificate Confirmation Box (Flexbox Version) --- */
+.confirmation-box {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: left;
+    font-family: 'Kanit', sans-serif;
+    color: #333;
+}
+
+.conf-row {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.conf-row:last-child {
+    border-bottom: none;
+}
+
+.conf-label {
+    font-weight: bold;
+    color: #555;
+    flex-shrink: 0; /* ไม่ให้ตัวหนังสือถูกบีบ */
+    padding-right: 15px;
+}
+
+.conf-data {
+    flex-grow: 1;
+    text-align: right;
+    word-break: break-all; /* คำสั่งสำคัญ: ทำให้ข้อความยาวๆ ตัดขึ้นบรรทัดใหม่ */
+}
