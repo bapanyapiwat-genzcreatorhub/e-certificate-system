@@ -273,53 +273,51 @@
             </div>
             <p style="text-align: left; margin-top: 1.5rem;">โปรดยืนยันข้อมูลส่วนตัวของท่านก่อนรับ E-Certificate</p>
             <div class="confirmation-box">
-                <table>
-                    <tr>
-                        <td>ชื่อ-นามสกุล:</td>
-                        <td><span id="cert-fullname"></span></td>
-                    </tr>
-                    <tr>
-                        <td>รหัสนักศึกษา:</td>
-                        <td><span id="cert-studentId"></span></td>
-                    </tr>
-                    <tr>
-                        <td>เบอร์มือถือ:</td>
-                        <td><span id="cert-mobile"></span></td>
-                    </tr>
-                    <tr>
-                        <td>อีเมล:</td>
-                        <td><span id="cert-email"></span></td>
-                    </tr>
-                    <tr>
-                        <td>สถานที่เรียน:</td>
-                        <td><span id="cert-campus"></span></td>
-                    </tr>
-                </table>
+                <div class="conf-row">
+                    <span class="conf-label">ชื่อ-นามสกุล:</span>
+                    <span class="conf-data" id="cert-fullname"></span>
+                </div>
+                <div class="conf-row">
+                    <span class="conf-label">รหัสนักศึกษา:</span>
+                    <span class="conf-data" id="cert-studentId"></span>
+                </div>
+                <div class="conf-row">
+                    <span class="conf-label">เบอร์มือถือ:</span>
+                    <span class="conf-data" id="cert-mobile"></span>
+                </div>
+                <div class="conf-row">
+                    <span class="conf-label">อีเมล:</span>
+                    <span class="conf-data" id="cert-email"></span>
+                </div>
+                <div class="conf-row">
+                    <span class="conf-label">สถานที่เรียน:</span>
+                    <span class="conf-data" id="cert-campus"></span>
+                </div>
             </div>
-            <div class="consent-group"><label><input type="checkbox"
-                        id="consent-checkbox">ข้าพเจ้ายินยอมรับว่าจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</label></div>
-            <div class="button-group">
-                <button class="back-button edit-button">✎ แก้ไขข้อมูล</button>
-                <button id="cert-confirm-btn" class="action-button">ถัดไป →</button>
-            </div>
-        </main>
+    <div class="consent-group"><label><input type="checkbox"
+                id="consent-checkbox">ข้าพเจ้ายินยอมรับว่าจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</label></div>
+    <div class="button-group">
+        <button class="back-button edit-button">✎ แก้ไขข้อมูล</button>
+        <button id="cert-confirm-btn" class="action-button">ถัดไป →</button>
+    </div>
+    </main>
 
-        <main id="success-card" class="card" style="display: none;">
-            <div class="form-header" style="border-bottom: none;">
-                <h3>ระบบ E-Certificate</h3>
-            </div>
-            <h4>เสร็จสิ้นการดำเนินการเรียบร้อยแล้ว</h4>
-            <p style="margin-bottom: 1.5rem;">ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate) ของท่าน<br>จะถูกจัดส่งไปยัง
-                E-mail ที่ท่านได้ลงทะเบียนไว้</p>
-            <div class="success-icon"><span>✔</span></div>
-            <p><strong><span id="success-email"></span></strong></p>
-            <p style="font-size: 0.9rem; color: #555;">กรุณาตรวจสอบกล่องจดหมาย (Inbox)<br>หรือโฟลเดอร์ Junk/Spam
-                หากไม่พบอีเมลภายใน 24 ชั่วโมง</p>
-            <div class="button-group" style="margin-top: 2rem; flex-direction: column;">
-                <button id="view-scores-btn" class="action-button">📊 ดูคะแนนประเมิน</button>
-                <button id="back-to-home-btn" class="back-button">🏠 กลับไปยังหน้าหลัก</button>
-            </div>
-        </main>
+    <main id="success-card" class="card" style="display: none;">
+        <div class="form-header" style="border-bottom: none;">
+            <h3>ระบบ E-Certificate</h3>
+        </div>
+        <h4>เสร็จสิ้นการดำเนินการเรียบร้อยแล้ว</h4>
+        <p style="margin-bottom: 1.5rem;">ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate) ของท่าน<br>จะถูกจัดส่งไปยัง
+            E-mail ที่ท่านได้ลงทะเบียนไว้</p>
+        <div class="success-icon"><span>✔</span></div>
+        <p><strong><span id="success-email"></span></strong></p>
+        <p style="font-size: 0.9rem; color: #555;">กรุณาตรวจสอบกล่องจดหมาย (Inbox)<br>หรือโฟลเดอร์ Junk/Spam
+            หากไม่พบอีเมลภายใน 24 ชั่วโมง</p>
+        <div class="button-group" style="margin-top: 2rem; flex-direction: column;">
+            <button id="view-scores-btn" class="action-button">📊 ดูคะแนนประเมิน</button>
+            <button id="back-to-home-btn" class="back-button">🏠 กลับไปยังหน้าหลัก</button>
+        </div>
+    </main>
 
     </div>
 </body>
