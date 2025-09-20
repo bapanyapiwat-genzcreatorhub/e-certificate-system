@@ -47,441 +47,342 @@
             </div>
             <form id="evaluation-form-part1">
                 <h4>ส่วนที่ 1: ข้อมูลส่วนตัว</h4>
-                <div class="form-group"><label>กรุณาระบุคำนำหน้า</label>
-                    <div class="radio-group"><label><input type="radio" name="prefix" value="นาย" required>
-                            นาย</label><label><input type="radio" name="prefix" value="นาง"> นาง</label><label><input
-                                type="radio" name="prefix" value="นางสาว"> นางสาว</label></div>
-                </div>
-                <div class="form-group"><label for="firstName">กรุณาระบุ ชื่อ</label><input type="text" id="firstName"
-                        required></div>
-                <div class="form-group"><label for="lastName">กรุณาระบุ นามสกุล</label><input type="text" id="lastName"
-                        required></div>
-                <div class="form-group"><label for="studentId">รหัสนักศึกษา</label><input type="text" id="studentId"
-                        required></div>
-                <div class="form-group"><label for="mobile">เบอร์มือถือ</label><input type="tel" id="mobile" required>
-                </div>
+                <div class="form-group"><label>กรุณาระบุคำนำหน้า</label><div class="radio-group"><label><input type="radio" name="prefix" value="นาย" required>นาย</label><label><input type="radio" name="prefix" value="นาง"> นาง</label><label><input type="radio" name="prefix" value="นางสาว"> นางสาว</label></div></div>
+                <div class="form-group"><label for="firstName">กรุณาระบุ ชื่อ</label><input type="text" id="firstName" required></div>
+                <div class="form-group"><label for="lastName">กรุณาระบุ นามสกุล</label><input type="text" id="lastName" required></div>
+                <div class="form-group"><label for="studentId">รหัสนักศึกษา</label><input type="text" id="studentId" required></div>
+                <div class="form-group"><label for="mobile">เบอร์มือถือ</label><input type="tel" id="mobile" required></div>
                 <div class="form-group"><label for="email">อีเมล</label><input type="email" id="email" required></div>
-                <div class="form-group"><label>สถานที่เรียน</label>
-                    <div class="radio-group"><label><input type="radio" name="campus" value="แจ้งวัฒนะ" required>
-                            แจ้งวัฒนะ</label><label><input type="radio" name="campus" value="วิทยาเขตอีอีซี">
-                            วิทยาเขตอีอีซี</label><label><input type="radio" name="campus" value="ศูนย์การเรียน">
-                            ศูนย์การเรียน</label></div>
-                </div>
+                <div class="form-group"><label>สถานที่เรียน</label><div class="radio-group"><label><input type="radio" name="campus" value="แจ้งวัฒนะ" required>แจ้งวัฒนะ</label><label><input type="radio" name="campus" value="วิทยาเขตอีอีซี">วิทยาเขตอีอีซี</label><label><input type="radio" name="campus" value="ศูนย์การเรียน">ศูนย์การเรียน</label></div></div>
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
 
         <main id="form-card-part2" class="card" style="display: none;">
-            <div class="summary-box">
-                <div><span id="summary-prefix-name-p2"></span> (<span
-                        id="summary-lastname-p2"></span>)<br><small>(รหัสนักศึกษา: <span
-                            id="summary-studentid-p2"></span>)</small><br><small>(สถานที่เรียน: <span
-                            id="summary-campus-p2"></span>)</small></div>
-                <div class="summary-right">(<span id="summary-email-p2"></span>)<br><button class="edit-button">✎
-                        แก้ไขข้อมูล</button></div>
-            </div>
-            <div class="form-header">
-                <h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button>
-            </div>
-            <div class="progress-section"><span>ความก้าวหน้า</span>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 20%;"></div>
-                </div><span>20%</span>
-            </div>
+            <div class="summary-box"><div><span id="summary-prefix-name-p2"></span> (<span id="summary-lastname-p2"></span>)<br><small>(รหัสนักศึกษา: <span id="summary-studentid-p2"></span>)</small><br><small>(สถานที่เรียน: <span id="summary-campus-p2"></span>)</small></div><div class="summary-right">(<span id="summary-email-p2"></span>)<br><button class="edit-button">✎ แก้ไขข้อมูล</button></div></div>
+            <div class="form-header"><h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button></div>
+            <div class="progress-section"><span>ความก้าวหน้า</span><div class="progress-bar"><div class="progress" style="width: 20%;"></div></div><span>20%</span></div>
             <form id="evaluation-form-part2">
                 <h4>ส่วนที่ 2: ด้านวิทยากร</h4>
-                <div class="likert-group"><label>การถ่ายทอดความรู้ของวิทยากรมีความชัดเจน</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q1" value="1"
-                                required>1</label><label><input type="radio" name="q1" value="2">2</label><label><input
-                                type="radio" name="q1" value="3">3</label><label><input type="radio" name="q1"
-                                value="4">4</label><label><input type="radio" name="q1"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>สามารถอธิบายเนื้อหาได้ชัดเจนและตรงประเด็น</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q2" value="1"
-                                required>1</label><label><input type="radio" name="q2" value="2">2</label><label><input
-                                type="radio" name="q2" value="3">3</label><label><input type="radio" name="q2"
-                                value="4">4</label><label><input type="radio" name="q2"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>การเปิดโอกาสให้ซักถามแลกเปลี่ยนเรียนรู้</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q3" value="1"
-                                required>1</label><label><input type="radio" name="q3" value="2">2</label><label><input
-                                type="radio" name="q3" value="3">3</label><label><input type="radio" name="q3"
-                                value="4">4</label><label><input type="radio" name="q3"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>การตรงต่อเวลาของวิทยากร</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q4" value="1"
-                                required>1</label><label><input type="radio" name="q4" value="2">2</label><label><input
-                                type="radio" name="q4" value="3">3</label><label><input type="radio" name="q4"
-                                value="4">4</label><label><input type="radio" name="q4"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
+                <div class="likert-group"><label>การถ่ายทอดความรู้ของวิทยากรมีความชัดเจน</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q1" value="5">5</label><label><input type="radio" name="q1" value="4">4</label><label><input type="radio" name="q1" value="3">3</label><label><input type="radio" name="q1" value="2">2</label><label><input type="radio" name="q1" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>สามารถอธิบายเนื้อหาได้ชัดเจนและตรงประเด็น</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q2" value="5">5</label><label><input type="radio" name="q2" value="4">4</label><label><input type="radio" name="q2" value="3">3</label><label><input type="radio" name="q2" value="2">2</label><label><input type="radio" name="q2" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>การเปิดโอกาสให้ซักถามแลกเปลี่ยนเรียนรู้</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q3" value="5">5</label><label><input type="radio" name="q3" value="4">4</label><label><input type="radio" name="q3" value="3">3</label><label><input type="radio" name="q3" value="2">2</label><label><input type="radio" name="q3" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>การตรงต่อเวลาของวิทยากร</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q4" value="5">5</label><label><input type="radio" name="q4" value="4">4</label><label><input type="radio" name="q4" value="3">3</label><label><input type="radio" name="q4" value="2">2</label><label><input type="radio" name="q4" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
 
         <main id="form-card-part3" class="card" style="display: none;">
-            <div class="summary-box">
-                <div><span id="summary-prefix-name-p3"></span> (<span
-                        id="summary-lastname-p3"></span>)<br><small>(รหัสนักศึกษา: <span
-                            id="summary-studentid-p3"></span>)</small><br><small>(สถานที่เรียน: <span
-                            id="summary-campus-p3"></span>)</small></div>
-                <div class="summary-right">(<span id="summary-email-p3"></span>)<br><button class="edit-button">✎
-                        แก้ไขข้อมูล</button></div>
-            </div>
-            <div class="form-header">
-                <h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button>
-            </div>
-            <div class="progress-section"><span>ความก้าวหน้า</span>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 40%;"></div>
-                </div><span>40%</span>
-            </div>
+            <div class="summary-box"><div><span id="summary-prefix-name-p3"></span> (<span id="summary-lastname-p3"></span>)<br><small>(รหัสนักศึกษา: <span id="summary-studentid-p3"></span>)</small><br><small>(สถานที่เรียน: <span id="summary-campus-p3"></span>)</small></div><div class="summary-right">(<span id="summary-email-p3"></span>)<br><button class="edit-button">✎ แก้ไขข้อมูล</button></div></div>
+            <div class="form-header"><h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button></div>
+            <div class="progress-section"><span>ความก้าวหน้า</span><div class="progress-bar"><div class="progress" style="width: 40%;"></div></div><span>40%</span></div>
             <form id="evaluation-form-part3">
                 <h4>ส่วนที่ 2: ด้านความรู้ความเข้าใจ</h4>
-                <div class="likert-group"><label>ความรู้ความเข้าใจก่อนการอบรม</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q5" value="1"
-                                required>1</label><label><input type="radio" name="q5" value="2">2</label><label><input
-                                type="radio" name="q5" value="3">3</label><label><input type="radio" name="q5"
-                                value="4">4</label><label><input type="radio" name="q5"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>ความรู้ความเข้าใจหลังอบรม</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q6" value="1"
-                                required>1</label><label><input type="radio" name="q6" value="2">2</label><label><input
-                                type="radio" name="q6" value="3">3</label><label><input type="radio" name="q6"
-                                value="4">4</label><label><input type="radio" name="q6"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
+                <div class="likert-group"><label>ความรู้ความเข้าใจก่อนการอบรม</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q5" value="5">5</label><label><input type="radio" name="q5" value="4">4</label><label><input type="radio" name="q5" value="3">3</label><label><input type="radio" name="q5" value="2">2</label><label><input type="radio" name="q5" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>ความรู้ความเข้าใจหลังอบรม</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q6" value="5">5</label><label><input type="radio" name="q6" value="4">4</label><label><input type="radio" name="q6" value="3">3</label><label><input type="radio" name="q6" value="2">2</label><label><input type="radio" name="q6" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
 
         <main id="form-card-part4" class="card" style="display: none;">
-            <div class="summary-box">
-                <div><span id="summary-prefix-name-p4"></span> (<span
-                        id="summary-lastname-p4"></span>)<br><small>(รหัสนักศึกษา: <span
-                            id="summary-studentid-p4"></span>)</small><br><small>(สถานที่เรียน: <span
-                            id="summary-campus-p4"></span>)</small></div>
-                <div class="summary-right">(<span id="summary-email-p4"></span>)<br><button class="edit-button">✎
-                        แก้ไขข้อมูล</button></div>
-            </div>
-            <div class="form-header">
-                <h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button>
-            </div>
-            <div class="progress-section"><span>ความก้าวหน้า</span>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 60%;"></div>
-                </div><span>60%</span>
-            </div>
+            <div class="summary-box"><div><span id="summary-prefix-name-p4"></span> (<span id="summary-lastname-p4"></span>)<br><small>(รหัสนักศึกษา: <span id="summary-studentid-p4"></span>)</small><br><small>(สถานที่เรียน: <span id="summary-campus-p4"></span>)</small></div><div class="summary-right">(<span id="summary-email-p4"></span>)<br><button class="edit-button">✎ แก้ไขข้อมูล</button></div></div>
+            <div class="form-header"><h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button></div>
+            <div class="progress-section"><span>ความก้าวหน้า</span><div class="progress-bar"><div class="progress" style="width: 60%;"></div></div><span>60%</span></div>
             <form id="evaluation-form-part4">
                 <h4>ส่วนที่ 2: ด้านการนำความรู้ไปใช้</h4>
-                <div class="likert-group"><label>สามารถนำความรู้ที่ได้รับไปปรับในการปฏิบัติงานได้</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q7" value="1"
-                                required>1</label><label><input type="radio" name="q7" value="2">2</label><label><input
-                                type="radio" name="q7" value="3">3</label><label><input type="radio" name="q7"
-                                value="4">4</label><label><input type="radio" name="q7"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>สามารถนำความรู้ไปเผยแพร่/ถ่ายทอดแก่เพื่อนร่วมงานได้</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q8" value="1"
-                                required>1</label><label><input type="radio" name="q8" value="2">2</label><label><input
-                                type="radio" name="q8" value="3">3</label><label><input type="radio" name="q8"
-                                value="4">4</label><label><input type="radio" name="q8"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
+                <div class="likert-group"><label>สามารถนำความรู้ที่ได้รับไปปรับในการปฏิบัติงานได้</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q7" value="5">5</label><label><input type="radio" name="q7" value="4">4</label><label><input type="radio" name="q7" value="3">3</label><label><input type="radio" name="q7" value="2">2</label><label><input type="radio" name="q7" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>สามารถนำความรู้ไปเผยแพร่/ถ่ายทอดแก่เพื่อนร่วมงานได้</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q8" value="5">5</label><label><input type="radio" name="q8" value="4">4</label><label><input type="radio" name="q8" value="3">3</label><label><input type="radio" name="q8" value="2">2</label><label><input type="radio" name="q8" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
+        
         <main id="form-card-part5" class="card" style="display: none;">
-            <div class="summary-box">
-                <div><span id="summary-prefix-name-p5"></span> (<span
-                        id="summary-lastname-p5"></span>)<br><small>(รหัสนักศึกษา: <span
-                            id="summary-studentid-p5"></span>)</small><br><small>(สถานที่เรียน: <span
-                            id="summary-campus-p5"></span>)</small></div>
-                <div class="summary-right">(<span id="summary-email-p5"></span>)<br><button class="edit-button">✎
-                        แก้ไขข้อมูล</button></div>
-            </div>
-            <div class="form-header">
-                <h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button>
-            </div>
-            <div class="progress-section"><span>ความก้าวหน้า</span>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 80%;"></div>
-                </div><span>80%</span>
-            </div>
+            <div class="summary-box"><div><span id="summary-prefix-name-p5"></span> (<span id="summary-lastname-p5"></span>)<br><small>(รหัสนักศึกษา: <span id="summary-studentid-p5"></span>)</small><br><small>(สถานที่เรียน: <span id="summary-campus-p5"></span>)</small></div><div class="summary-right">(<span id="summary-email-p5"></span>)<br><button class="edit-button">✎ แก้ไขข้อมูล</button></div></div>
+            <div class="form-header"><h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button></div>
+            <div class="progress-section"><span>ความก้าวหน้า</span><div class="progress-bar"><div class="progress" style="width: 80%;"></div></div><span>80%</span></div>
             <form id="evaluation-form-part5">
                 <h4>ส่วนที่ 2: ด้านการดำเนินโครงการ</h4>
-                <div class="likert-group"><label>ความเหมาะสมรูปแบบ/สถานที่ในการจัดโครงการ</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q9" value="1"
-                                required>1</label><label><input type="radio" name="q9" value="2">2</label><label><input
-                                type="radio" name="q9" value="3">3</label><label><input type="radio" name="q9"
-                                value="4">4</label><label><input type="radio" name="q9"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>ความพร้อมของอุปกรณ์และสื่อใช้</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q10" value="1"
-                                required>1</label><label><input type="radio" name="q10" value="2">2</label><label><input
-                                type="radio" name="q10" value="3">3</label><label><input type="radio" name="q10"
-                                value="4">4</label><label><input type="radio" name="q10"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
-                <div class="likert-group"><label>ระยะเวลาในการอบรม</label>
-                    <div class="likert-scale"><span>น้อยที่สุด</span><label><input type="radio" name="q11" value="1"
-                                required>1</label><label><input type="radio" name="q11" value="2">2</label><label><input
-                                type="radio" name="q11" value="3">3</label><label><input type="radio" name="q11"
-                                value="4">4</label><label><input type="radio" name="q11"
-                                value="5">5</label><span>มากที่สุด</span></div>
-                </div>
+                <div class="likert-group"><label>ความเหมาะสมรูปแบบ/สถานที่ในการจัดโครงการ</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q9" value="5">5</label><label><input type="radio" name="q9" value="4">4</label><label><input type="radio" name="q9" value="3">3</label><label><input type="radio" name="q9" value="2">2</label><label><input type="radio" name="q9" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>ความพร้อมของอุปกรณ์และสื่อใช้</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q10" value="5">5</label><label><input type="radio" name="q10" value="4">4</label><label><input type="radio" name="q10" value="3">3</label><label><input type="radio" name="q10" value="2">2</label><label><input type="radio" name="q10" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
+                <div class="likert-group"><label>ระยะเวลาในการอบรม</label><div class="likert-scale"><span>มากที่สุด</span><label><input type="radio" name="q11" value="5">5</label><label><input type="radio" name="q11" value="4">4</label><label><input type="radio" name="q11" value="3">3</label><label><input type="radio" name="q11" value="2">2</label><label><input type="radio" name="q11" value="1" required>1</label><span>น้อยที่สุด</span></div></div>
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
+        
         <main id="form-card-part6" class="card" style="display: none;">
-            <div class="summary-box">
-                <div><span id="summary-prefix-name-p6"></span> (<span
-                        id="summary-lastname-p6"></span>)<br><small>(รหัสนักศึกษา: <span
-                            id="summary-studentid-p6"></span>)</small><br><small>(สถานที่เรียน: <span
-                            id="summary-campus-p6"></span>)</small></div>
-                <div class="summary-right">(<span id="summary-email-p6"></span>)<br><button class="edit-button">✎
-                        แก้ไขข้อมูล</button></div>
-            </div>
-            <div class="form-header">
-                <h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button>
-            </div>
-            <div class="progress-section"><span>ความก้าวหน้า</span>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 100%;"></div>
-                </div><span>100%</span>
-            </div>
+            <div class="summary-box"><div><span id="summary-prefix-name-p6"></span> (<span id="summary-lastname-p6"></span>)<br><small>(รหัสนักศึกษา: <span id="summary-studentid-p6"></span>)</small><br><small>(สถานที่เรียน: <span id="summary-campus-p6"></span>)</small></div><div class="summary-right">(<span id="summary-email-p6"></span>)<br><button class="edit-button">✎ แก้ไขข้อมูล</button></div></div>
+            <div class="form-header"><h3>ระบบประเมินผล</h3><button class="back-button">← ย้อนกลับ</button></div>
+            <div class="progress-section"><span>ความก้าวหน้า</span><div class="progress-bar"><div class="progress" style="width: 100%;"></div></div><span>100%</span></div>
             <form id="evaluation-form-part6">
                 <h4>ส่วนที่ 2: ข้อเสนอแนะอื่นๆ</h4>
-                <div class="form-group"><label for="suggestions">ข้อเสนอแนะเพิ่มเติม</label><textarea id="suggestions"
-                        name="suggestions" rows="4"></textarea></div>
+                <div class="form-group"><label for="suggestions">ข้อเสนอแนะเพิ่มเติม</label><textarea id="suggestions" name="suggestions" rows="4"></textarea></div>
                 <button type="submit" class="action-button next-button">ส่งแบบประเมิน</button>
             </form>
         </main>
 
         <main id="certificate-confirmation-card" class="card" style="display: none;">
-            <div class="form-header">
-                <h3>ระบบ E-Certificate</h3>
-                <button class="back-button">← ย้อนกลับ</button>
-            </div>
+            <div class="form-header"><h3>ระบบ E-Certificate</h3><button class="back-button">← ย้อนกลับ</button></div>
             <p style="text-align: left; margin-top: 1.5rem;">โปรดยืนยันข้อมูลส่วนตัวของท่านก่อนรับ E-Certificate</p>
             <div class="confirmation-box">
                 <table>
-                    <tr>
-                        <td>ชื่อ-นามสกุล:</td>
-                        <td><span id="cert-fullname"></span></td>
-                    </tr>
-                    <tr>
-                        <td>รหัสนักศึกษา:</td>
-                        <td><span id="cert-studentId"></span></td>
-                    </tr>
-                    <tr>
-                        <td>เบอร์มือถือ:</td>
-                        <td><span id="cert-mobile"></span></td>
-                    </tr>
-                    <tr>
-                        <td>อีเมล:</td>
-                        <td><span id="cert-email"></span></td>
-                    </tr>
-                    <tr>
-                        <td>สถานที่เรียน:</td>
-                        <td><span id="cert-campus"></span></td>
-                    </tr>
+                    <tr><td>ชื่อ-นามสกุล:</td><td><span id="cert-fullname"></span></td></tr>
+                    <tr><td>รหัสนักศึกษา:</td><td><span id="cert-studentId"></span></td></tr>
+                    <tr><td>เบอร์มือถือ:</td><td><span id="cert-mobile"></span></td></tr>
+                    <tr><td>อีเมล:</td><td><span id="cert-email"></span></td></tr>
+                    <tr><td>สถานที่เรียน:</td><td><span id="cert-campus"></span></td></tr>
                 </table>
             </div>
-            <div class="consent-group">
-                <label>
-                    <input type="checkbox" id="consent-checkbox">
-                    ข้าพเจ้ายินยอมรับว่าจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง
-                </label>
-            </div>
+            <div class="consent-group"><label><input type="checkbox" id="consent-checkbox">ข้าพเจ้ายินยอมรับว่าจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</label></div>
             <div class="button-group">
-                <button id="cert-edit-btn" class="back-button edit-button">✎ แก้ไขข้อมูล</button>
+                <button class="back-button edit-button">✎ แก้ไขข้อมูล</button>
                 <button id="cert-confirm-btn" class="action-button">ถัดไป →</button>
             </div>
         </main>
-    </div>
+        
+        <main id="success-card" class="card" style="display: none;">
+            <div class="form-header" style="border-bottom: none;"><h3>ระบบ E-Certificate</h3></div>
+            <h4>เสร็จสิ้นการดำเนินการเรียบร้อยแล้ว</h4>
+            <p style="margin-bottom: 1.5rem;">ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate) ของท่าน<br>จะถูกจัดส่งไปยัง E-mail ที่ท่านได้ลงทะเบียนไว้</p>
+            <div class="success-icon"><span>✔</span></div>
+            <p><strong><span id="success-email"></span></strong></p>
+            <p style="font-size: 0.9rem; color: #555;">กรุณาตรวจสอบกล่องจดหมาย (Inbox)<br>หรือโฟลเดอร์ Junk/Spam หากไม่พบอีเมลภายใน 24 ชั่วโมง</p>
+            <div class="button-group" style="margin-top: 2rem; flex-direction: column;">
+                <button id="view-scores-btn" class="action-button">📊 ดูคะแนนประเมิน</button>
+                <button id="back-to-home-btn" class="back-button">🏠 กลับไปยังหน้าหลัก</button>
+            </div>
+        </main>
 
-    <script type="module">
-        // 1. Import functions from the Firebase SDK
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-        import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+    </div> </body>
 
-        // 2. Your web app's Firebase configuration
-        const firebaseConfig = {
-            // !!! สำคัญ: ให้ใส่ค่า Config จริงของคุณที่นี่ !!!
-            apiKey: "AIzaSyD_7eO7WoAm5CIQlCIcnYJfIXRJu35NJg4",
-            authDomain: "genzcreatorhub-firebase.firebaseapp.com",
-            databaseURL: "https://genzcreatorhub-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "genzcreatorhub-firebase",
-            storageBucket: "genzcreatorhub-firebase.firebasestorage.app",
-            messagingSenderId: "550010826564",
-            appId: "1:550010826564:web:2751d7e0530c80bd4eb111",
-            measurementId: "G-B0QRMC1P6S"
-        };
+<script type="module">
+    // 1. Import functions from the Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-        // 3. Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+    // 2. Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyD_7eO7WoAm5CIQlCIcnYJfIXRJu35NJg4",
+        authDomain: "genzcreatorhub-firebase.firebaseapp.com",
+        databaseURL: "https://genzcreatorhub-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "genzcreatorhub-firebase",
+        storageBucket: "genzcreatorhub-firebase.firebasestorage.app",
+        messagingSenderId: "550010826564",
+        appId: "1:550010826564:web:2751d7e0530c80bd4eb111",
+        measurementId: "G-B0QRMC1P6S"
+    };
 
-        // --- ดึง Element ต่างๆ ---
-        const container = document.querySelector('.container');
-        const allCards = document.querySelectorAll('.card');
-        const forms = document.querySelectorAll('form');
+    // 3. Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
-        let currentStudentId = null;
-        let personalData = {};
+    // --- ดึง Element ต่างๆ ---
+    const container = document.querySelector('.container');
+    const allCards = document.querySelectorAll('.card');
+    const forms = document.querySelectorAll('form');
 
-        // --- Functions ---
-        function showCard(cardId) {
-            allCards.forEach(card => card.style.display = 'none');
-            const cardToShow = document.getElementById(cardId);
-            if (cardToShow) cardToShow.style.display = 'block';
-        }
+    let currentStudentId = null;
+    let personalData = {};
+    let evaluationAnswers = {};
+    const STORAGE_KEY = 'evaluationFormData';
 
-        function updateAllSummaries(data) {
-            document.querySelectorAll('.summary-box').forEach((box) => {
-                box.querySelector('[id^="summary-prefix-name"]').innerText = data.prefix + ' ' + data.firstName;
-                box.querySelector('[id^="summary-lastname"]').innerText = data.lastName;
-                box.querySelector('[id^="summary-studentid"]').innerText = data.studentId;
-                box.querySelector('[id^="summary-email"]').innerText = data.email;
-                box.querySelector('[id^="summary-campus"]').innerText = data.campus;
-            });
-        }
+    // --- Functions ---
+    function showCard(cardId) {
+        allCards.forEach(card => card.style.display = 'none');
+        const cardToShow = document.getElementById(cardId);
+        if (cardToShow) cardToShow.style.display = 'block';
+    }
 
-        function populateConfirmationData(data) {
-            const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
-            document.getElementById('cert-fullname').innerText = fullName;
-            document.getElementById('cert-studentId').innerText = data.studentId;
-            document.getElementById('cert-mobile').innerText = data.mobile;
-            document.getElementById('cert-email').innerText = data.email;
-            document.getElementById('cert-campus').innerText = data.campus;
-        }
-
-        function handleEditInfo() {
-            Swal.fire({
-                title: 'แก้ไขข้อมูลส่วนตัว',
-                html: `
-                    <div id="swal-form" style="text-align: left;">
-                        <div class="form-group"><label>คำนำหน้า</label><div class="radio-group"><label><input type="radio" name="swal-prefix" value="นาย" ${personalData.prefix === 'นาย' ? 'checked' : ''}> นาย</label><label><input type="radio" name="swal-prefix" value="นาง" ${personalData.prefix === 'นาง' ? 'checked' : ''}> นาง</label><label><input type="radio" name="swal-prefix" value="นางสาว" ${personalData.prefix === 'นางสาว' ? 'checked' : ''}> นางสาว</label></div></div>
-                        <div class="form-group"><label for="swal-firstName">ชื่อ</label><input type="text" id="swal-firstName" class="swal2-input" value="${personalData.firstName || ''}"></div>
-                        <div class="form-group"><label for="swal-lastName">นามสกุล</label><input type="text" id="swal-lastName" class="swal2-input" value="${personalData.lastName || ''}"></div>
-                        <div class="form-group"><label for="swal-studentId">รหัสนักศึกษา (ไม่สามารถแก้ไขได้)</label><input type="text" id="swal-studentId" class="swal2-input" value="${personalData.studentId || ''}" disabled></div>
-                        <div class="form-group"><label for="swal-mobile">เบอร์มือถือ</label><input type="tel" id="swal-mobile" class="swal2-input" value="${personalData.mobile || ''}"></div>
-                        <div class="form-group"><label for="swal-email">อีเมล</label><input type="email" id="swal-email" class="swal2-input" value="${personalData.email || ''}"></div>
-                        <div class="form-group"><label>สถานที่เรียน</label><div class="radio-group"><label><input type="radio" name="swal-campus" value="แจ้งวัฒนะ" ${personalData.campus === 'แจ้งวัฒนะ' ? 'checked' : ''}> แจ้งวัฒนะ</label><label><input type="radio" name="swal-campus" value="วิทยาเขตอีอีซี" ${personalData.campus === 'วิทยาเขตอีอีซี' ? 'checked' : ''}> วิทยาเขตอีอีซี</label><label><input type="radio" name="swal-campus" value="ศูนย์การเรียน" ${personalData.campus === 'ศูนย์การเรียน' ? 'checked' : ''}> ศูนย์การเรียน</label></div></div>
-                    </div>
-                `,
-                confirmButtonText: 'บันทึก', cancelButtonText: 'ยกเลิก', showCancelButton: true, confirmButtonColor: '#7367f0', cancelButtonColor: '#d33', focusConfirm: false,
-                preConfirm: () => {
-                    const prefix = document.querySelector('input[name="swal-prefix"]:checked');
-                    const campus = document.querySelector('input[name="swal-campus"]:checked');
-                    const newValues = {
-                        prefix: prefix ? prefix.value : null,
-                        firstName: document.getElementById('swal-firstName').value,
-                        lastName: document.getElementById('swal-lastName').value,
-                        mobile: document.getElementById('swal-mobile').value,
-                        email: document.getElementById('swal-email').value,
-                        campus: campus ? campus.value : null
-                    };
-                    if (Object.values(newValues).some(v => !v)) {
-                        Swal.showValidationMessage(`กรุณากรอกข้อมูลให้ครบถ้วน`);
-                        return false;
-                    }
-                    return newValues;
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Object.assign(personalData, result.value);
-                    const studentRef = ref(database, 'evaluations/' + currentStudentId);
-                    update(studentRef, result.value)
-                        .then(() => {
-                            updateAllSummaries(personalData);
-                            populateConfirmationData(personalData);
-                            Swal.fire('บันทึกสำเร็จ!', 'ข้อมูลของคุณถูกอัปเดตแล้ว', 'success');
-                        })
-                        .catch(error => Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถบันทึกข้อมูลได้: ' + error.message, 'error'));
-                }
-            });
-        }
-
-        // --- Event Listeners สำหรับปุ่มต่างๆ ---
-        document.getElementById('start-btn').addEventListener('click', () => showCard('form-card-part1'));
-        document.querySelectorAll('.edit-button').forEach(btn => btn.addEventListener('click', handleEditInfo));
-        document.querySelectorAll('.back-button').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const currentCard = e.target.closest('.card');
-                const currentCardId = currentCard.id;
-                if (currentCardId === 'form-card-part1') { showCard('landing-card'); }
-                else if (currentCardId === 'certificate-confirmation-card') { showCard('form-card-part6'); }
-                else {
-                    const currentPart = parseInt(currentCardId.slice(-1));
-                    if (currentPart > 1) { showCard(`form-card-part${currentPart - 1}`); }
-                }
-            });
+    function updateAllSummaries(data) {
+        document.querySelectorAll('.summary-box').forEach((box) => {
+            box.querySelector('[id^="summary-prefix-name"]').innerText = data.prefix + ' ' + data.firstName;
+            box.querySelector('[id^="summary-lastname"]').innerText = data.lastName;
+            box.querySelector('[id^="summary-studentid"]').innerText = data.studentId;
+            box.querySelector('[id^="summary-email"]').innerText = data.email;
+            box.querySelector('[id^="summary-campus"]').innerText = data.campus;
         });
+    }
 
-        document.getElementById('cert-confirm-btn').addEventListener('click', () => {
-            if (!document.getElementById('consent-checkbox').checked) {
-                Swal.fire('กรุณายืนยัน', 'โปรดทำเครื่องหมายเพื่อยอมรับเงื่อนไข', 'warning');
-                return;
+    function populateConfirmationData(data) {
+        const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
+        document.getElementById('cert-fullname').innerText = fullName;
+        document.getElementById('cert-studentId').innerText = data.studentId;
+        document.getElementById('cert-mobile').innerText = data.mobile;
+        document.getElementById('cert-email').innerText = data.email;
+        document.getElementById('cert-campus').innerText = data.campus;
+    }
+
+    function handleEditInfo() {
+        Swal.fire({
+            title: 'แก้ไขข้อมูลส่วนตัว',
+            html: `
+                <div id="swal-form" style="text-align: left;">
+                    <div class="form-group"><label>คำนำหน้า</label><div class="radio-group"><label><input type="radio" name="swal-prefix" value="นาย" ${personalData.prefix === 'นาย' ? 'checked' : ''}> นาย</label><label><input type="radio" name="swal-prefix" value="นาง" ${personalData.prefix === 'นาง' ? 'checked' : ''}> นาง</label><label><input type="radio" name="swal-prefix" value="นางสาว" ${personalData.prefix === 'นางสาว' ? 'checked' : ''}> นางสาว</label></div></div>
+                    <div class="form-group"><label for="swal-firstName">ชื่อ</label><input type="text" id="swal-firstName" class="swal2-input" value="${personalData.firstName || ''}"></div>
+                    <div class="form-group"><label for="swal-lastName">นามสกุล</label><input type="text" id="swal-lastName" class="swal2-input" value="${personalData.lastName || ''}"></div>
+                    <div class="form-group"><label for="swal-studentId">รหัสนักศึกษา (ไม่สามารถแก้ไขได้)</label><input type="text" id="swal-studentId" class="swal2-input" value="${personalData.studentId || ''}" disabled></div>
+                    <div class="form-group"><label for="swal-mobile">เบอร์มือถือ</label><input type="tel" id="swal-mobile" class="swal2-input" value="${personalData.mobile || ''}"></div>
+                    <div class="form-group"><label for="swal-email">อีเมล</label><input type="email" id="swal-email" class="swal2-input" value="${personalData.email || ''}"></div>
+                    <div class="form-group"><label>สถานที่เรียน</label><div class="radio-group"><label><input type="radio" name="swal-campus" value="แจ้งวัฒนะ" ${personalData.campus === 'แจ้งวัฒนะ' ? 'checked' : ''}> แจ้งวัฒนะ</label><label><input type="radio" name="swal-campus" value="วิทยาเขตอีอีซี" ${personalData.campus === 'วิทยาเขตอีอีซี' ? 'checked' : ''}> วิทยาเขตอีอีซี</label><label><input type="radio" name="swal-campus" value="ศูนย์การเรียน" ${personalData.campus === 'ศูนย์การเรียน' ? 'checked' : ''}> ศูนย์การเรียน</label></div></div>
+                </div>
+            `,
+            confirmButtonText: 'บันทึก', cancelButtonText: 'ยกเลิก', showCancelButton: true, confirmButtonColor: '#7367f0', cancelButtonColor: '#d33', focusConfirm: false,
+            preConfirm: () => {
+                const prefix = document.querySelector('input[name="swal-prefix"]:checked');
+                const campus = document.querySelector('input[name="swal-campus"]:checked');
+                const newValues = {
+                    prefix: prefix ? prefix.value : null,
+                    firstName: document.getElementById('swal-firstName').value,
+                    lastName: document.getElementById('swal-lastName').value,
+                    mobile: document.getElementById('swal-mobile').value,
+                    email: document.getElementById('swal-email').value,
+                    campus: campus ? campus.value : null
+                };
+                if (Object.values(newValues).some(v => !v)) {
+                    Swal.showValidationMessage(`กรุณากรอกข้อมูลให้ครบถ้วน`);
+                    return false;
+                }
+                return newValues;
             }
-            container.innerHTML = '<h1>ดำเนินการสำเร็จ!</h1><p>ระบบจะจัดส่ง E-Certificate ให้ท่านทางอีเมลที่ลงทะเบียนไว้</p>';
-        });
-
-        // --- Form Submit Handlers ---
-        forms.forEach((form) => {
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const part = parseInt(form.id.slice(-1));
-                let dataToUpdate = {};
-
-                if (part === 1) {
-                    currentStudentId = document.getElementById('studentId').value;
-                    if (!currentStudentId) { Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกรหัสนักศึกษา', 'warning'); return; }
-                    personalData = {
-                        prefix: document.querySelector('input[name="prefix"]:checked')?.value || '',
-                        firstName: document.getElementById('firstName').value,
-                        lastName: document.getElementById('lastName').value,
-                        studentId: currentStudentId,
-                        mobile: document.getElementById('mobile').value,
-                        email: document.getElementById('email').value,
-                        campus: document.querySelector('input[name="campus"]:checked')?.value || '',
-                        timestamp: new Date().toISOString()
-                    };
-                    dataToUpdate = personalData;
-                } else {
-                    const inputs = form.querySelectorAll('input:checked, textarea');
-                    inputs.forEach(input => {
-                        const key = input.name || input.id;
-                        dataToUpdate[key] = input.value;
-                    });
-                }
-
-                if (!currentStudentId) return;
-
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Object.assign(personalData, result.value);
                 const studentRef = ref(database, 'evaluations/' + currentStudentId);
-                update(studentRef, dataToUpdate)
+                update(studentRef, result.value)
                     .then(() => {
-                        console.log(`Part ${part} Data saved!`);
-                        if (part < forms.length) {
-                            updateAllSummaries(personalData);
-                            showCard(`form-card-part${part + 1}`);
-                        } else {
-                            populateConfirmationData(personalData);
-                            showCard('certificate-confirmation-card');
-                        }
+                        updateAllSummaries(personalData);
+                        populateConfirmationData(personalData);
+                        Swal.fire('บันทึกสำเร็จ!', 'ข้อมูลของคุณถูกอัปเดตแล้ว', 'success');
                     })
-                    .catch(error => Swal.fire('เกิดข้อผิดพลาด', `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`, 'error'));
-            });
+                    .catch(error => Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถบันทึกข้อมูลได้: ' + error.message, 'error'));
+            }
         });
-    </script>
+    }
+
+    function saveState(cardId, data, answers) {
+        const state = { currentCardId: cardId, formData: data, answers: answers };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    // --- Event Listeners สำหรับปุ่มต่างๆ ---
+    document.getElementById('start-btn').addEventListener('click', () => showCard('form-card-part1'));
+    document.querySelectorAll('.edit-button').forEach(btn => btn.addEventListener('click', handleEditInfo));
+    document.querySelectorAll('.back-button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const currentCard = e.target.closest('.card');
+            const currentCardId = currentCard.id;
+            let targetCardId = '';
+            if (currentCardId === 'form-card-part1') { targetCardId = 'landing-card'; localStorage.removeItem(STORAGE_KEY); } 
+            else if (currentCardId === 'certificate-confirmation-card') { targetCardId = 'form-card-part6'; } 
+            else {
+                const currentPart = parseInt(currentCardId.slice(-1));
+                if (currentPart > 1) { targetCardId = `form-card-part${currentPart - 1}`; }
+            }
+            if (targetCardId) { showCard(targetCardId); saveState(targetCardId, personalData, evaluationAnswers); }
+        });
+    });
+    
+    document.getElementById('cert-confirm-btn').addEventListener('click', () => {
+        if (!document.getElementById('consent-checkbox').checked) {
+            Swal.fire('กรุณายืนยัน', 'โปรดทำเครื่องหมายเพื่อยอมรับเงื่อนไข', 'warning');
+            return;
+        }
+        localStorage.removeItem(STORAGE_KEY);
+        document.getElementById('success-email').innerText = personalData.email;
+        showCard('success-card');
+    });
+
+    document.getElementById('back-to-home-btn').addEventListener('click', () => location.reload());
+    document.getElementById('view-scores-btn').addEventListener('click', () => {
+        let scoresHtml = '<div style="text-align: left; padding: 0 1rem; max-height: 300px; overflow-y: auto;">';
+        // ทำให้ Key ดูสวยงามขึ้น
+        const friendlyKeys = {
+            q1: "ความชัดเจนของวิทยากร", q2: "เนื้อหาตรงประเด็น", q3: "การเปิดโอกาสซักถาม", q4: "การตรงต่อเวลา",
+            q5: "ความเข้าใจก่อนอบรม", q6: "ความเข้าใจหลังอบรม", q7: "การนำไปปฏิบัติงาน", q8: "การนำไปเผยแพร่",
+            q9: "ความเหมาะสมของรูปแบบ", q10: "ความพร้อมอุปกรณ์", q11: "ความเหมาะสมของเวลา", suggestions: "ข้อเสนอแนะ"
+        };
+        for (const key in evaluationAnswers) {
+            const friendlyKey = friendlyKeys[key] || key;
+             scoresHtml += `<p style="margin: 8px 0;"><strong>${friendlyKey}:</strong> <span style="color: #007bff;">${evaluationAnswers[key]}</span></p>`;
+        }
+        scoresHtml += '</div>';
+        Swal.fire({
+            title: '<strong>คะแนนประเมิน</strong>', icon: 'info', html: scoresHtml, showCloseButton: true,
+            focusConfirm: false, confirmButtonText: 'ปิด', confirmButtonColor: '#7367f0'
+        });
+    });
+
+    // --- Form Submit Handlers ---
+    forms.forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const part = parseInt(form.id.slice(-1));
+            let dataToUpdate = {};
+            
+            if (part === 1) {
+                currentStudentId = document.getElementById('studentId').value;
+                if (!currentStudentId) { Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกรหัสนักศึกษา', 'warning'); return; }
+                personalData = {
+                    prefix: document.querySelector('input[name="prefix"]:checked')?.value || '',
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    studentId: currentStudentId,
+                    mobile: document.getElementById('mobile').value,
+                    email: document.getElementById('email').value,
+                    campus: document.querySelector('input[name="campus"]:checked')?.value || '',
+                    timestamp: new Date().toISOString()
+                };
+                dataToUpdate = personalData;
+            } else {
+                const inputs = form.querySelectorAll('input:checked, textarea');
+                inputs.forEach(input => {
+                    const key = input.name || input.id;
+                    dataToUpdate[key] = input.value;
+                });
+                Object.assign(evaluationAnswers, dataToUpdate);
+            }
+
+            if (!currentStudentId) return;
+
+            const studentRef = ref(database, 'evaluations/' + currentStudentId);
+            update(studentRef, dataToUpdate)
+                .then(() => {
+                    console.log(`Part ${part} Data saved!`);
+                    let nextCardId = '';
+                    if (part < forms.length) {
+                        nextCardId = `form-card-part${part + 1}`;
+                        updateAllSummaries(personalData);
+                        showCard(nextCardId);
+                    } else {
+                        nextCardId = 'certificate-confirmation-card';
+                        populateConfirmationData(personalData);
+                        showCard(nextCardId);
+                    }
+                    saveState(nextCardId, personalData, evaluationAnswers);
+                })
+                .catch(error => Swal.fire('เกิดข้อผิดพลาด', `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`, 'error'));
+        });
+    });
+
+    // --- โค้ดโหลดสถานะเดิม ---
+    (function loadState() {
+        const savedStateJSON = localStorage.getItem(STORAGE_KEY);
+        if (savedStateJSON) {
+            const savedState = JSON.parse(savedStateJSON);
+            personalData = savedState.formData;
+            evaluationAnswers = savedState.answers || {};
+            currentStudentId = personalData.studentId;
+            
+            showCard(savedState.currentCardId);
+
+            if (savedState.currentCardId !== 'landing-card' && savedState.currentCardId !== 'form-card-part1') {
+                updateAllSummaries(personalData);
+            }
+            if (savedState.currentCardId === 'certificate-confirmation-card') {
+                populateConfirmationData(personalData);
+            }
+        }
+    })();
+</script>
 </body>
 
 </html>
