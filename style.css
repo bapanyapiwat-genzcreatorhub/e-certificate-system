@@ -342,3 +342,37 @@ form h4 {
 #success-card .button-group {
     flex-direction: column;
 }
+
+/* --- Responsive Table for Confirmation Box --- */
+@media (max-width: 480px) {
+    .confirmation-box table, 
+    .confirmation-box tbody, 
+    .confirmation-box tr, 
+    .confirmation-box td {
+        display: block;
+        width: 100% !important;
+    }
+
+    .confirmation-box tr {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .confirmation-box tr:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .confirmation-box td {
+        border: none;
+        padding: 4px 0;
+    }
+
+    .confirmation-box td:first-child {
+        padding-right: 0;
+        white-space: normal;
+        color: #888;
+        font-size: 0.8rem;
+    }
+}
