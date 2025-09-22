@@ -403,48 +403,52 @@
             });
         }
 
-        async function generateCertificate(data, certId) {
-            const doc = new jsPDF("l", "mm", "a4");
+async function generateCertificate(data, certId) {
+    const doc = new jsPDF("l", "mm", "a4");
 
-            doc.addFileToVFS("THSarabunNew.ttf", fontRegularBase64);
-            doc.addFont("THSarabunNew.ttf", "THSarabunNew", "normal");
-            doc.addFileToVFS("THSarabunNewBold.ttf", fontBoldBase64);
-            doc.addFont("THSarabunNewBold.ttf", "THSarabunNew", "bold");
+    doc.addFileToVFS("THSarabunNew.ttf", fontRegularBase64);
+    doc.addFont("THSarabunNew.ttf", "THSarabunNew", "normal");
+    doc.addFileToVFS("THSarabunNewBold.ttf", fontBoldBase64);
+    doc.addFont("THSarabunNewBold.ttf", "THSarabunNew", "bold");
 
-            const bg = await loadImageAsBase64("https://raw.githubusercontent.com/bapanyapiwat-genzcreatorhub/e-certificate-system/main/bg_web_1.jpg");
-            doc.addImage(bg, "JPEG", 0, 0, 297, 210);
+    const bg = await loadImageAsBase64("https://raw.githubusercontent.com/bapanyapiwat-genzcreatorhub/e-certificate-system/main/bg_web_1.jpg");
+    doc.addImage(bg, "JPEG", 0, 0, 297, 210);
 
-            const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
-            doc.setFont("THSarabunNew", "bold");
-            doc.setFontSize(29.7);
-            doc.setTextColor(255, 255, 255);
-            doc.text(fullName, 148.5, 94, { align: "center" });
+    const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
+    doc.setFont("THSarabunNew", "bold");
+    doc.setFontSize(29.7);
+    doc.setTextColor(255, 255, 255);
+    doc.text(fullName, 148.5, 94, { align: "center" });
 
-            const date = new Date();
-            const formattedDate = `วันที่ ${date.getDate()} ${["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()]} ${date.getFullYear() + 543}`;
-            doc.setFont("THSarabunNew", "normal");
-            doc.setFontSize(15.2);
-            doc.text(formattedDate, 148, 163, { align: "center" });
+    const date = new Date();
+    const formattedDate = `วันที่ ${date.getDate()} ${["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()]} ${date.getFullYear() + 543}`;
+    doc.setFont("THSarabunNew", "normal");
+    doc.setFontSize(15.2);
+    doc.text(formattedDate, 148, 163, { align: "center" });
 
-            doc.setFont("THSarabunNew", "bold");
-            doc.setFontSize(12);
-            doc.text(`{${certId}}`, 278, 188, { align: "right" });
+    doc.setFont("THSarabunNew", "bold");
+    doc.setFontSize(12);
+    doc.text(`{${certId}}`, 278, 188, { align: "right" });
 
-            // แก้ไข QR Code ให้รอจนสร้างเสร็จผ่าน callback
-            return new Promise(resolve => {
-                const qrDiv = document.createElement("div");
-                new QRCode(qrDiv, {
-                    text: certId,
-                    width: 120,
-                    height: 120,
-                    correctLevel: QRCode.CorrectLevel.H,
-                    callback: (qrCodeDataURL) => {
-                        doc.addImage(qrCodeDataURL, "PNG", 24.5, 154.2);
-                        resolve(doc);
-                    }
-                });
-            });
-        }
+    const qrDiv = document.createElement("div");
+    new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
+
+    // กลับมาใช้ setTimeout แต่เพิ่มการหน่วงเวลาเล็กน้อยเพื่อให้ QR Code สร้างเสร็จแน่นอน
+    return new Promise(resolve => {
+        setTimeout(() => {
+            try {
+                const qrImg = qrDiv.querySelector("img").src;
+                if (qrImg) {
+                    doc.addImage(qrImg, "PNG", 24.5, 154.2);
+                }
+            } catch (e) {
+                console.error("Could not add QR Code to PDF:", e);
+                // ไม่ต้องหยุดการทำงานแม้ QR code จะมีปัญหา ให้สร้างใบประกาศต่อไป
+            }
+            resolve(doc);
+        }, 500); // หน่วงเวลา 500ms, หากยังพบปัญหาบนอุปกรณ์ช้าๆ อาจเพิ่มเป็น 1000ms
+    });
+}
 
         function generateUUID() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
