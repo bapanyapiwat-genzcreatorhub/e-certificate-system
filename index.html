@@ -430,24 +430,22 @@ async function generateCertificate(data, certId) {
     doc.setFontSize(12);
     doc.text(`{${certId}}`, 278, 188, { align: "right" });
 
+    // --- ส่วนที่แก้ไข: ดึงข้อมูลจาก Canvas โดยตรง ---
     const qrDiv = document.createElement("div");
     new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
+    
+    // หน่วงเวลาเล็กน้อยเพื่อให้ DOM อัปเดตทัน
+    await new Promise(resolve => setTimeout(resolve, 0)); 
 
-    // กลับมาใช้ setTimeout แต่เพิ่มการหน่วงเวลาเล็กน้อยเพื่อให้ QR Code สร้างเสร็จแน่นอน
-    return new Promise(resolve => {
-        setTimeout(() => {
-            try {
-                const qrImg = qrDiv.querySelector("img").src;
-                if (qrImg) {
-                    doc.addImage(qrImg, "PNG", 24.5, 154.2);
-                }
-            } catch (e) {
-                console.error("Could not add QR Code to PDF:", e);
-                // ไม่ต้องหยุดการทำงานแม้ QR code จะมีปัญหา ให้สร้างใบประกาศต่อไป
-            }
-            resolve(doc);
-        }, 500); // หน่วงเวลา 500ms, หากยังพบปัญหาบนอุปกรณ์ช้าๆ อาจเพิ่มเป็น 1000ms
-    });
+    try {
+        const qrCanvas = qrDiv.querySelector("canvas");
+        const qrImgData = qrCanvas.toDataURL("image/png");
+        doc.addImage(qrImgData, "PNG", 24.5, 154.2);
+    } catch (e) {
+        console.error("Could not add QR Code to PDF:", e);
+    }
+
+    return doc;
 }
 
         function generateUUID() {
