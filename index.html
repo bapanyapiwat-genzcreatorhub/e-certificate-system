@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="th">
+    <div class="hidden-made-with">Made with ❤️</div>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gen Z Top Sales - Evaluation</title>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
@@ -34,7 +34,6 @@
             </div>
             <button id="start-btn" class="action-button">เริ่มทำแบบประเมิน ➔</button>
         </main>
-
         <main id="form-card-part1" class="card" style="display: none;">
             <div class="form-header">
                 <h3>ระบบประเมินผล</h3>
@@ -70,7 +69,6 @@
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
         <main id="form-card-part2" class="card" style="display: none;">
             <div class="summary-box">
                 <div><span id="summary-prefix-name-p2"></span> (<span
@@ -121,7 +119,6 @@
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
         <main id="form-card-part3" class="card" style="display: none;">
             <div class="summary-box">
                 <div><span id="summary-prefix-name-p3"></span> (<span
@@ -158,7 +155,6 @@
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
         <main id="form-card-part4" class="card" style="display: none;">
             <div class="summary-box">
                 <div><span id="summary-prefix-name-p4"></span> (<span
@@ -195,7 +191,6 @@
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
         <main id="form-card-part5" class="card" style="display: none;">
             <div class="summary-box">
                 <div><span id="summary-prefix-name-p5"></span> (<span
@@ -241,7 +236,6 @@
                 <button type="submit" class="action-button next-button">ถัดไป →</button>
             </form>
         </main>
-
         <main id="form-card-part6" class="card" style="display: none;">
             <div class="summary-box">
                 <div><span id="summary-prefix-name-p6"></span> (<span
@@ -267,122 +261,84 @@
             </form>
         </main>
 
-        <main id="certificate-confirmation-card" class="card" style="display: none;">
-            <div class="form-header">
-                <h3>ระบบ E-Certificate</h3><button class="back-button">← ย้อนกลับ</button>
+        <main id="success-card" class="card" style="display: none;">
+            <div class="form-header" style="border-bottom: none; justify-content: center;">
+                <h3>ระบบ E-Certificate</h3>
             </div>
-            <p style="text-align: left; margin-top: 1.5rem;">โปรดยืนยันข้อมูลส่วนตัวของท่านก่อนรับ E-Certificate</p>
-            <div class="confirmation-box">
-                <div class="conf-row">
-                    <span class="conf-label">ชื่อ-นามสกุล:</span>
-                    <span class="conf-data" id="cert-fullname"></span>
-                </div>
-                <div class="conf-row">
-                    <span class="conf-label">รหัสนักศึกษา:</span>
-                    <span class="conf-data" id="cert-studentId"></span>
-                </div>
-                <div class="conf-row">
-                    <span class="conf-label">เบอร์มือถือ:</span>
-                    <span class="conf-data" id="cert-mobile"></span>
-                </div>
-                <div class="conf-row">
-                    <span class="conf-label">อีเมล:</span>
-                    <span class="conf-data" id="cert-email"></span>
-                </div>
-                <div class="conf-row">
-                    <span class="conf-label">สถานที่เรียน:</span>
-                    <span class="conf-data" id="cert-campus"></span>
+            <div class="success-icon">
+                <span>✔</span>
+            </div>
+            <h4>เสร็จสิ้นการดำเนินการเรียบร้อยแล้ว</h4>
+            <p>ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate) ของท่านพร้อมให้ Download แล้ว</p>
+            <div class="cert-preview-wrapper">
+                <embed id="cert-preview-embed" src="" type="application/pdf" width="100%" height="300px" />
+                <div class="cert-id-overlay">
+                    Certificate ID: <span id="cert-id-preview"></span>
                 </div>
             </div>
-    <div class="consent-group"><label><input type="checkbox"
-                id="consent-checkbox">ข้าพเจ้ายินยอมรับว่าจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</label></div>
-    <div class="button-group">
-        <button class="back-button edit-button">✎ แก้ไขข้อมูล</button>
-        <button id="cert-confirm-btn" class="action-button">ถัดไป →</button>
+            <div class="button-group" style="margin-top: 1.5rem; flex-direction: column; gap: 0.8rem;">
+                <button id="download-cert-btn" class="action-button">📥 ดาวน์โหลดใบประกาศ</button>
+                <button id="view-scores-btn" class="back-button">📊 ดูคะแนนประเมิน</button>
+                <button id="back-to-home-btn" class="back-button">🏠 กลับไปยังหน้าหลัก</button>
+            </div>
+        </main>
     </div>
-    </main>
 
-    <main id="success-card" class="card" style="display: none;">
-        <div class="form-header" style="border-bottom: none;">
-            <h3>ระบบ E-Certificate</h3>
-        </div>
-        <h4>เสร็จสิ้นการดำเนินการเรียบร้อยแล้ว</h4>
-        <p style="margin-bottom: 1.5rem;">ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate) ของท่าน<br>จะถูกจัดส่งไปยัง
-            E-mail ที่ท่านได้ลงทะเบียนไว้</p>
-        <div class="success-icon"><span>✔</span></div>
-        <p><strong><span id="success-email"></span></strong></p>
-        <p style="font-size: 0.9rem; color: #555;">กรุณาตรวจสอบกล่องจดหมาย (Inbox)<br>หรือโฟลเดอร์ Junk/Spam
-            หากไม่พบอีเมลภายใน 24 ชั่วโมง</p>
-        <div class="button-group" style="margin-top: 2rem; flex-direction: column;">
-            <button id="view-scores-btn" class="action-button">📊 ดูคะแนนประเมิน</button>
-            <button id="back-to-home-btn" class="back-button">🏠 กลับไปยังหน้าหลัก</button>
-        </div>
-    </main>
+    <script type="module">
+        // 1. Import functions from the Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
-    </div>
-</body>
+        // 2. Your web app's Firebase configuration
+        const firebaseConfig = {
+            // !!! สำคัญ: ให้ใส่ค่า Config จริงของคุณที่นี่ !!!
+            apiKey: "AIzaSyD_7eO7WoAm5CIQlCIcnYJfIXRJu35NJg4",
+            authDomain: "genzcreatorhub-firebase.firebaseapp.com",
+            databaseURL: "https://genzcreatorhub-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "genzcreatorhub-firebase",
+            storageBucket: "genzcreatorhub-firebase.firebasestorage.app",
+            messagingSenderId: "550010826564",
+            appId: "1:550010826564:web:2751d7e0530c80bd4eb111",
+            measurementId: "G-B0QRMC1P6S"
+        };
 
-<script type="module">
-    // 1. Import functions from the Firebase SDK
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-    import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+        // 3. Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
 
-    // 2. Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyD_7eO7WoAm5CIQlCIcnYJfIXRJu35NJg4",
-        authDomain: "genzcreatorhub-firebase.firebaseapp.com",
-        databaseURL: "https://genzcreatorhub-firebase-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "genzcreatorhub-firebase",
-        storageBucket: "genzcreatorhub-firebase.firebasestorage.app",
-        messagingSenderId: "550010826564",
-        appId: "1:550010826564:web:2751d7e0530c80bd4eb111",
-        measurementId: "G-B0QRMC1P6S"
-    };
+        // --- ดึง Element ต่างๆ ---
+        const container = document.querySelector('.container');
+        const allCards = document.querySelectorAll('.card');
+        const forms = document.querySelectorAll('form');
 
-    // 3. Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
+        let currentStudentId = null;
+        let personalData = {};
+        let evaluationAnswers = {};
+        let generatedPdfDoc = null;
+        const STORAGE_KEY = 'evaluationFormData';
+        const { jsPDF } = window.jspdf;
 
-    // --- ดึง Element ต่างๆ ---
-    const container = document.querySelector('.container');
-    const allCards = document.querySelectorAll('.card');
-    const forms = document.querySelectorAll('form');
+        // --- Functions (ส่วนจัดการหน้าเว็บ) ---
+        function showCard(cardId) {
+            allCards.forEach(card => card.style.display = 'none');
+            const cardToShow = document.getElementById(cardId);
+            if (cardToShow) cardToShow.style.display = 'block';
+        }
 
-    let currentStudentId = null;
-    let personalData = {};
-    let evaluationAnswers = {};
-    const STORAGE_KEY = 'evaluationFormData';
+        function updateAllSummaries(data) {
+            document.querySelectorAll('.summary-box').forEach((box) => {
+                box.querySelector('[id^="summary-prefix-name"]').innerText = data.prefix + ' ' + data.firstName;
+                box.querySelector('[id^="summary-lastname"]').innerText = data.lastName;
+                box.querySelector('[id^="summary-studentid"]').innerText = data.studentId;
+                box.querySelector('[id^="summary-email"]').innerText = data.email;
+                box.querySelector('[id^="summary-campus"]').innerText = data.campus;
+            });
+        }
 
-    // --- Functions ---
-    function showCard(cardId) {
-        allCards.forEach(card => card.style.display = 'none');
-        const cardToShow = document.getElementById(cardId);
-        if (cardToShow) cardToShow.style.display = 'block';
-    }
-
-    function updateAllSummaries(data) {
-        document.querySelectorAll('.summary-box').forEach((box) => {
-            box.querySelector('[id^="summary-prefix-name"]').innerText = data.prefix + ' ' + data.firstName;
-            box.querySelector('[id^="summary-lastname"]').innerText = data.lastName;
-            box.querySelector('[id^="summary-studentid"]').innerText = data.studentId;
-            box.querySelector('[id^="summary-email"]').innerText = data.email;
-            box.querySelector('[id^="summary-campus"]').innerText = data.campus;
-        });
-    }
-
-    function populateConfirmationData(data) {
-        const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
-        document.getElementById('cert-fullname').innerText = fullName;
-        document.getElementById('cert-studentId').innerText = data.studentId;
-        document.getElementById('cert-mobile').innerText = data.mobile;
-        document.getElementById('cert-email').innerText = data.email;
-        document.getElementById('cert-campus').innerText = data.campus;
-    }
-
-    function handleEditInfo() {
-        Swal.fire({
-            title: 'แก้ไขข้อมูลส่วนตัว',
-            html: `
+        function handleEditInfo() {
+            Swal.fire({
+                title: 'แก้ไขข้อมูลส่วนตัว',
+                html: `
                 <div id="swal-form" style="text-align: left;">
                     <div class="form-group"><label>คำนำหน้า</label><div class="radio-group"><label><input type="radio" name="swal-prefix" value="นาย" ${personalData.prefix === 'นาย' ? 'checked' : ''}> นาย</label><label><input type="radio" name="swal-prefix" value="นาง" ${personalData.prefix === 'นาง' ? 'checked' : ''}> นาง</label><label><input type="radio" name="swal-prefix" value="นางสาว" ${personalData.prefix === 'นางสาว' ? 'checked' : ''}> นางสาว</label></div></div>
                     <div class="form-group"><label for="swal-firstName">ชื่อ</label><input type="text" id="swal-firstName" class="swal2-input" value="${personalData.firstName || ''}"></div>
@@ -393,196 +349,235 @@
                     <div class="form-group"><label>สถานที่เรียน</label><div class="radio-group"><label><input type="radio" name="swal-campus" value="แจ้งวัฒนะ" ${personalData.campus === 'แจ้งวัฒนะ' ? 'checked' : ''}> แจ้งวัฒนะ</label><label><input type="radio" name="swal-campus" value="วิทยาเขตอีอีซี" ${personalData.campus === 'วิทยาเขตอีอีซี' ? 'checked' : ''}> วิทยาเขตอีอีซี</label><label><input type="radio" name="swal-campus" value="ศูนย์การเรียน" ${personalData.campus === 'ศูนย์การเรียน' ? 'checked' : ''}> ศูนย์การเรียน</label></div></div>
                 </div>
             `,
-            confirmButtonText: 'บันทึก', cancelButtonText: 'ยกเลิก', showCancelButton: true, confirmButtonColor: '#7367f0', cancelButtonColor: '#d33', focusConfirm: false,
-            preConfirm: () => {
-                const prefix = document.querySelector('input[name="swal-prefix"]:checked');
-                const campus = document.querySelector('input[name="swal-campus"]:checked');
-                const newValues = {
-                    prefix: prefix ? prefix.value : null,
-                    firstName: document.getElementById('swal-firstName').value,
-                    lastName: document.getElementById('swal-lastName').value,
-                    mobile: document.getElementById('swal-mobile').value,
-                    email: document.getElementById('swal-email').value,
-                    campus: campus ? campus.value : null
-                };
-                if (Object.values(newValues).some(v => !v)) {
-                    Swal.showValidationMessage(`กรุณากรอกข้อมูลให้ครบถ้วน`);
-                    return false;
-                }
-                return newValues;
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Object.assign(personalData, result.value);
-                const studentRef = ref(database, 'evaluations/' + currentStudentId);
-                update(studentRef, result.value)
-                    .then(() => {
-                        updateAllSummaries(personalData);
-                        populateConfirmationData(personalData);
-                        Swal.fire('บันทึกสำเร็จ!', 'ข้อมูลของคุณถูกอัปเดตแล้ว', 'success');
-                    })
-                    .catch(error => Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถบันทึกข้อมูลได้: ' + error.message, 'error'));
-            }
-        });
-    }
-
-    function saveState(cardId, data, answers) {
-        const state = { currentCardId: cardId, formData: data, answers: answers };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    // --- Event Listeners สำหรับปุ่มต่างๆ ---
-    document.getElementById('start-btn').addEventListener('click', () => showCard('form-card-part1'));
-    document.querySelectorAll('.edit-button').forEach(btn => btn.addEventListener('click', handleEditInfo));
-    document.querySelectorAll('.back-button').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const currentCard = e.target.closest('.card');
-            const currentCardId = currentCard.id;
-            let targetCardId = '';
-            if (currentCardId === 'form-card-part1') { targetCardId = 'landing-card'; localStorage.removeItem(STORAGE_KEY); }
-            else if (currentCardId === 'certificate-confirmation-card') { targetCardId = 'form-card-part6'; }
-            else {
-                const currentPart = parseInt(currentCardId.slice(-1));
-                if (currentPart > 1) { targetCardId = `form-card-part${currentPart - 1}`; }
-            }
-            if (targetCardId) { showCard(targetCardId); saveState(targetCardId, personalData, evaluationAnswers); }
-        });
-    });
-
-    document.getElementById('cert-confirm-btn').addEventListener('click', () => {
-        if (!document.getElementById('consent-checkbox').checked) {
-            Swal.fire('กรุณายืนยัน', 'โปรดทำเครื่องหมายเพื่อยอมรับเงื่อนไข', 'warning');
-            return;
-        }
-
-        // แสดง Pop-up ว่ากำลังดำเนินการ
-        Swal.fire({
-            title: 'กำลังดำเนินการ',
-            text: 'ระบบกำลังสร้างใบประกาศนียบัตรและส่งอีเมล...',
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        });
-
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzzRWjKrRGDlJXO5pD1t5Cwx1Aqq8GVdJ0joF99KB-qImQB99ojyYJ1WPD_R9KL9D4/exec'; // ใส่ Web App URL ของคุณ
-
-        // แก้ไข fetch ให้รอฟังผล (ลบ mode: 'no-cors')
-        fetch(WEB_APP_URL, {
-            method: 'POST',
-            body: JSON.stringify({ studentId: currentStudentId })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    // เมื่อ Backend ทำงานสำเร็จจริงๆ
-                    localStorage.removeItem(STORAGE_KEY);
-                    document.getElementById('success-email').innerText = personalData.email;
-                    Swal.close(); // ปิด Pop-up "กำลังดำเนินการ"
-                    showCard('success-card');
-                } else {
-                    // ถ้า Backend แจ้งว่ามี Error
-                    throw new Error(data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error triggering script:", error);
-                Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถสร้าง Certificate ได้: ' + error.message, 'error');
-            });
-    });
-
-    document.getElementById('back-to-home-btn').addEventListener('click', () => location.reload());
-    document.getElementById('view-scores-btn').addEventListener('click', () => {
-        let scoresHtml = '<div style="text-align: left; padding: 0 1rem; max-height: 300px; overflow-y: auto;">';
-        // ทำให้ Key ดูสวยงามขึ้น
-        const friendlyKeys = {
-            q1: "ความชัดเจนของวิทยากร", q2: "เนื้อหาตรงประเด็น", q3: "การเปิดโอกาสซักถาม", q4: "การตรงต่อเวลา",
-            q5: "ความเข้าใจก่อนอบรม", q6: "ความเข้าใจหลังอบรม", q7: "การนำไปปฏิบัติงาน", q8: "การนำไปเผยแพร่",
-            q9: "ความเหมาะสมของรูปแบบ", q10: "ความพร้อมอุปกรณ์", q11: "ความเหมาะสมของเวลา", suggestions: "ข้อเสนอแนะ"
-        };
-        for (const key in evaluationAnswers) {
-            const friendlyKey = friendlyKeys[key] || key;
-            scoresHtml += `<p style="margin: 8px 0;"><strong>${friendlyKey}:</strong> <span style="color: #007bff;">${evaluationAnswers[key]}</span></p>`;
-        }
-        scoresHtml += '</div>';
-        Swal.fire({
-            title: '<strong>คะแนนประเมิน</strong>', icon: 'info', html: scoresHtml, showCloseButton: true,
-            focusConfirm: false, confirmButtonText: 'ปิด', confirmButtonColor: '#7367f0'
-        });
-    });
-
-    // --- Form Submit Handlers ---
-    forms.forEach((form) => {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const part = parseInt(form.id.slice(-1));
-            let dataToUpdate = {};
-
-            if (part === 1) {
-                currentStudentId = document.getElementById('studentId').value;
-                if (!currentStudentId) { Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกรหัสนักศึกษา', 'warning'); return; }
-                personalData = {
-                    prefix: document.querySelector('input[name="prefix"]:checked')?.value || '',
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    studentId: currentStudentId,
-                    mobile: document.getElementById('mobile').value,
-                    email: document.getElementById('email').value,
-                    campus: document.querySelector('input[name="campus"]:checked')?.value || '',
-                    timestamp: new Date().toISOString()
-                };
-                dataToUpdate = personalData;
-            } else {
-                const inputs = form.querySelectorAll('input:checked, textarea');
-                inputs.forEach(input => {
-                    const key = input.name || input.id;
-                    dataToUpdate[key] = input.value;
-                });
-                Object.assign(evaluationAnswers, dataToUpdate);
-            }
-
-            if (!currentStudentId) return;
-
-            const studentRef = ref(database, 'evaluations/' + currentStudentId);
-            update(studentRef, dataToUpdate)
-                .then(() => {
-                    console.log(`Part ${part} Data saved!`);
-                    let nextCardId = '';
-                    if (part < forms.length) {
-                        nextCardId = `form-card-part${part + 1}`;
-                        updateAllSummaries(personalData);
-                        showCard(nextCardId);
-                    } else {
-                        nextCardId = 'certificate-confirmation-card';
-                        populateConfirmationData(personalData);
-                        showCard(nextCardId);
+                confirmButtonText: 'บันทึก', cancelButtonText: 'ยกเลิก', showCancelButton: true, confirmButtonColor: '#7367f0', cancelButtonColor: '#d33', focusConfirm: false,
+                preConfirm: () => {
+                    const prefix = document.querySelector('input[name="swal-prefix"]:checked');
+                    const campus = document.querySelector('input[name="swal-campus"]:checked');
+                    const newValues = {
+                        prefix: prefix ? prefix.value : null,
+                        firstName: document.getElementById('swal-firstName').value,
+                        lastName: document.getElementById('swal-lastName').value,
+                        mobile: document.getElementById('swal-mobile').value,
+                        email: document.getElementById('swal-email').value,
+                        campus: campus ? campus.value : null
+                    };
+                    if (Object.values(newValues).some(v => !v)) {
+                        Swal.showValidationMessage(`กรุณากรอกข้อมูลให้ครบถ้วน`);
+                        return false;
                     }
-                    saveState(nextCardId, personalData, evaluationAnswers);
-                })
-                .catch(error => Swal.fire('เกิดข้อผิดพลาด', `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`, 'error'));
-        });
-    });
-
-    // --- โค้ดโหลดสถานะเดิม ---
-    (function loadState() {
-        const savedStateJSON = localStorage.getItem(STORAGE_KEY);
-        if (savedStateJSON) {
-            const savedState = JSON.parse(savedStateJSON);
-            personalData = savedState.formData;
-            evaluationAnswers = savedState.answers || {};
-            currentStudentId = personalData.studentId;
-
-            showCard(savedState.currentCardId);
-
-            if (savedState.currentCardId !== 'landing-card' && savedState.currentCardId !== 'form-card-part1') {
-                updateAllSummaries(personalData);
-            }
-            if (savedState.currentCardId === 'certificate-confirmation-card') {
-                populateConfirmationData(personalData);
-            }
+                    return newValues;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Object.assign(personalData, result.value);
+                    const studentRef = ref(database, 'evaluations/' + currentStudentId);
+                    update(studentRef, result.value)
+                        .then(() => {
+                            updateAllSummaries(personalData);
+                            Swal.fire('บันทึกสำเร็จ!', 'ข้อมูลของคุณถูกอัปเดตแล้ว', 'success');
+                        })
+                        .catch(error => Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถบันทึกข้อมูลได้: ' + error.message, 'error'));
+                }
+            });
         }
-    })();
-</script>
-</body>
+
+        async function loadFont(url) {
+            const res = await fetch(url);
+            const buffer = await res.arrayBuffer();
+            let binary = '';
+            const bytes = new Uint8Array(buffer);
+            const len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+
+        async function loadImageAsBase64(url) {
+            const res = await fetch(url);
+            const blob = await res.blob();
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        async function generateCertificate(data, certId) {
+            const doc = new jsPDF("l", "mm", "a4");
+            const fontRegular = await loadFont("https://wichianp.github.io/fonts/THSarabunNew.ttf");
+            const fontBold = await loadFont("https://wichianp.github.io/fonts/THSarabunNewBold.ttf");
+
+            doc.addFileToVFS("THSarabunNew.ttf", fontRegular);
+            doc.addFont("THSarabunNew.ttf", "THSarabunNew", "normal");
+            doc.addFileToVFS("THSarabunNewBold.ttf", fontBold);
+            doc.addFont("THSarabunNewBold.ttf", "THSarabunNew", "bold");
+
+            const bg = await loadImageAsBase64("https://raw.githubusercontent.com/bapanyapiwat-genzcreatorhub/e-certificate-system/main/bg_web_1.jpg");
+            doc.addImage(bg, "JPEG", 0, 0, 297, 210);
+
+            const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
+            doc.setFont("THSarabunNew", "bold");
+            doc.setFontSize(29.7);
+            doc.setTextColor(255, 255, 255);
+            doc.text(fullName, 148.5, 94, { align: "center" });
+
+            const date = new Date();
+            const formattedDate = `วันที่ ${date.getDate()} ${["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()]} ${date.getFullYear() + 543}`;
+            doc.setFont("THSarabunNew", "normal");
+            doc.setFontSize(15.2);
+            doc.text(formattedDate, 148, 163, { align: "center" });
+
+            doc.setFont("THSarabunNew", "bold");
+            doc.setFontSize(12);
+            doc.text(`{${certId}}`, 278, 188, { align: "right" });
+
+            const qrDiv = document.createElement("div");
+            new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
+
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    const qrImg = qrDiv.querySelector("img").src;
+                    doc.addImage(qrImg, "PNG", 24.5, 154.2);
+                    resolve(doc);
+                }, 500);
+            });
+        }
+
+        function saveState(cardId, data, answers) {
+            const state = { currentCardId: cardId, formData: data, answers: answers };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        // --- Event Listeners ---
+        document.getElementById('start-btn').addEventListener('click', () => showCard('form-card-part1'));
+        document.querySelectorAll('.edit-button').forEach(btn => btn.addEventListener('click', handleEditInfo));
+        document.querySelectorAll('.back-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const currentCard = e.target.closest('.card');
+                const currentCardId = currentCard.id;
+                let targetCardId = '';
+                if (currentCardId === 'form-card-part1') {
+                    targetCardId = 'landing-card';
+                    localStorage.removeItem(STORAGE_KEY);
+                } else {
+                    const currentPart = parseInt(currentCardId.slice(-1));
+                    if (currentPart > 1) {
+                        targetCardId = `form-card-part${currentPart - 1}`;
+                    }
+                }
+                if (targetCardId) {
+                    showCard(targetCardId);
+                    saveState(targetCardId, personalData, evaluationAnswers);
+                }
+            });
+        });
+
+        document.getElementById('download-cert-btn').addEventListener('click', () => {
+            if (generatedPdfDoc) {
+                generatedPdfDoc.save(`certificate-${currentStudentId}.pdf`);
+            }
+        });
+
+        document.getElementById('back-to-home-btn').addEventListener('click', () => location.reload());
+
+        document.getElementById('view-scores-btn').addEventListener('click', () => {
+            let scoresHtml = '<div style="text-align: left; padding: 0 1rem; max-height: 300px; overflow-y: auto;">';
+            const friendlyKeys = {
+                q1: "ความชัดเจนของวิทยากร", q2: "เนื้อหาตรงประเด็น", q3: "การเปิดโอกาสซักถาม", q4: "การตรงต่อเวลา",
+                q5: "ความเข้าใจก่อนอบรม", q6: "ความเข้าใจหลังอบรม", q7: "การนำไปปฏิบัติงาน", q8: "การนำไปเผยแพร่",
+                q9: "ความเหมาะสมของรูปแบบ", q10: "ความพร้อมอุปกรณ์", q11: "ความเหมาะสมของเวลา", suggestions: "ข้อเสนอแนะ"
+            };
+            for (const key in evaluationAnswers) {
+                const friendlyKey = friendlyKeys[key] || key;
+                scoresHtml += `<p style="margin: 8px 0;"><strong>${friendlyKey}:</strong> <span style="color: #007bff;">${evaluationAnswers[key]}</span></p>`;
+            }
+            scoresHtml += '</div>';
+            Swal.fire({
+                title: '<strong>คะแนนประเมิน</strong>', icon: 'info', html: scoresHtml, showCloseButton: true,
+                focusConfirm: false, confirmButtonText: 'ปิด', confirmButtonColor: '#7367f0'
+            });
+        });
+
+        // --- Form Submit Handlers ---
+        forms.forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const part = parseInt(form.id.slice(-1));
+                let dataToUpdate = {};
+
+                if (part === 1) {
+                    currentStudentId = document.getElementById('studentId').value;
+                    if (!currentStudentId) { Swal.fire('ข้อมูลไม่ครบ', 'กรุณากรอกรหัสนักศึกษา', 'warning'); return; }
+                    personalData = {
+                        prefix: document.querySelector('input[name="prefix"]:checked')?.value || '',
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        studentId: currentStudentId,
+                        mobile: document.getElementById('mobile').value,
+                        email: document.getElementById('email').value,
+                        campus: document.querySelector('input[name="campus"]:checked')?.value || '',
+                        timestamp: new Date().toISOString()
+                    };
+                    dataToUpdate = personalData;
+                } else {
+                    const inputs = form.querySelectorAll('input:checked, textarea');
+                    inputs.forEach(input => {
+                        const key = input.name || input.id;
+                        dataToUpdate[key] = input.value;
+                    });
+                    Object.assign(evaluationAnswers, dataToUpdate);
+                }
+
+                if (!currentStudentId) return;
+
+                const studentRef = ref(database, 'evaluations/' + currentStudentId);
+                update(studentRef, dataToUpdate)
+                    .then(async () => {
+                        console.log(`Part ${part} Data saved!`);
+                        if (part < forms.length) {
+                            const nextCardId = `form-card-part${part + 1}`;
+                            updateAllSummaries(personalData);
+                            showCard(nextCardId);
+                            saveState(nextCardId, personalData, evaluationAnswers);
+                        } else {
+                            localStorage.removeItem(STORAGE_KEY);
+                            Swal.fire({ title: 'กำลังสร้าง E-Certificate', text: 'กรุณารอสักครู่...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
+
+                            const certificateId = crypto.randomUUID();
+                            await update(ref(database, `evaluations/${currentStudentId}`), { certificateId: certificateId });
+
+                            const doc = await generateCertificate(personalData, certificateId);
+                            generatedPdfDoc = doc;
+
+                            const pdfBlob = doc.output('blob');
+                            const pdfUrl = URL.createObjectURL(pdfBlob);
+                            document.getElementById('cert-preview-embed').src = pdfUrl;
+                            document.getElementById('cert-id-preview').innerText = certificateId;
+
+                            Swal.close();
+                            showCard('success-card');
+                        }
+                    })
+                    .catch(error => Swal.fire('เกิดข้อผิดพลาด', `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`, 'error'));
+            });
+        });
+
+        // --- โหลดสถานะเดิม ---
+        (function loadState() {
+            const savedStateJSON = localStorage.getItem(STORAGE_KEY);
+            if (savedStateJSON) {
+                const savedState = JSON.parse(savedStateJSON);
+                personalData = savedState.formData;
+                evaluationAnswers = savedState.answers || {};
+                currentStudentId = personalData.studentId;
+
+                showCard(savedState.currentCardId);
+                if (savedState.currentCardId.startsWith('form-card-part') && savedState.currentCardId !== 'form-card-part1') {
+                    updateAllSummaries(personalData);
+                }
+            }
+        })();
+    </script>
 
 </html>
