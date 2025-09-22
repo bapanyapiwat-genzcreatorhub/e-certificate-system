@@ -31,7 +31,10 @@
                 <p>🕒 ใช้เวลา: ประมาณ 1-2 นาที</p>
                 <p>📝 จำนวนคำถาม: 11 ข้อ</p>
             </div>
-            <button id="start-btn" class="action-button">เริ่มทำแบบประเมิน ➔</button>
+            <div class="button-group" style="flex-direction: column; gap: 0.8rem; width: 100%;">
+                <button id="start-btn" class="action-button">เริ่มทำแบบประเมิน ➔</button>
+                <button id="search-cert-btn" class="back-button">🔍 ค้นหา E-Certificate (สำหรับผู้ประเมินแล้ว)</button>
+            </div>
         </main>
         <main id="form-card-part1" class="card" style="display: none;">
             <div class="form-header">
@@ -268,7 +271,8 @@
                 <span>✔</span>
             </div>
             <h4>เสร็จสิ้นการดำเนินการเรียบร้อยแล้ว</h4>
-            <p>ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate) ของท่านพร้อมให้ Download แล้ว</p>
+            <p>ใบประกาศนียบัตรอิเล็กทรอนิกส์ (E-Certificate)</p>
+            <p>ของท่านพร้อมให้ Download แล้ว</p>
             <div class="cert-preview-wrapper">
                 <embed id="cert-preview-embed" src="" type="application/pdf" width="100%" height="300px" />
                 <div class="cert-id-overlay">
@@ -277,6 +281,8 @@
             </div>
             <div class="button-group" style="margin-top: 1.5rem; flex-direction: column; gap: 0.8rem;">
                 <button id="download-cert-btn" class="action-button">📥 ดาวน์โหลดใบประกาศ</button>
+                <button id="download-drive-btn" class="action-button" style="background: #1DA261;">📁 ดาวน์โหลดผ่าน
+                    Google Drive</button>
                 <button id="view-scores-btn" class="back-button">📊 ดูคะแนนประเมิน</button>
                 <button id="back-to-home-btn" class="back-button">🏠 กลับไปยังหน้าหลัก</button>
             </div>
@@ -286,7 +292,7 @@
     <script type="module">
         // 1. Import functions from the Firebase SDK
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-        import { getDatabase, ref, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+        import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
         // 2. Your web app's Firebase configuration
         const firebaseConfig = {
@@ -300,6 +306,9 @@
             appId: "1:550010826564:web:2751d7e0530c80bd4eb111",
             measurementId: "G-B0QRMC1P6S"
         };
+
+        // --- เพิ่มตัวแปรนี้เข้าไป ---
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQcurzObBxJyA5h_qiAZWWzyoBuB-VzIrICGAP3OcWLmEvhmFW4O0m4Y9rnwkRDqq8/exec'; // <-- วาง URL ที่คัดลอกมาที่นี่
 
         // 3. Initialize Firebase
         const app = initializeApp(firebaseConfig);
@@ -403,50 +412,52 @@
             });
         }
 
-async function generateCertificate(data, certId) {
-    const doc = new jsPDF("l", "mm", "a4");
+        async function generateCertificate(data, certId) {
+            const doc = new jsPDF("l", "mm", "a4");
 
-    doc.addFileToVFS("THSarabunNew.ttf", fontRegularBase64);
-    doc.addFont("THSarabunNew.ttf", "THSarabunNew", "normal");
-    doc.addFileToVFS("THSarabunNewBold.ttf", fontBoldBase64);
-    doc.addFont("THSarabunNewBold.ttf", "THSarabunNew", "bold");
+            doc.addFileToVFS("THSarabunNew.ttf", fontRegularBase64);
+            doc.addFont("THSarabunNew.ttf", "THSarabunNew", "normal");
+            doc.addFileToVFS("THSarabunNewBold.ttf", fontBoldBase64);
+            doc.addFont("THSarabunNewBold.ttf", "THSarabunNew", "bold");
 
-    const bg = await loadImageAsBase64("https://raw.githubusercontent.com/bapanyapiwat-genzcreatorhub/e-certificate-system/main/bg_web_1.jpg");
-    doc.addImage(bg, "JPEG", 0, 0, 297, 210);
+            const bg = await loadImageAsBase64("https://raw.githubusercontent.com/bapanyapiwat-genzcreatorhub/e-certificate-system/main/bg_web_1.jpg");
+            doc.addImage(bg, "JPEG", 0, 0, 297, 210);
 
-    const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
-    doc.setFont("THSarabunNew", "bold");
-    doc.setFontSize(29.7);
-    doc.setTextColor(255, 255, 255);
-    doc.text(fullName, 148.5, 94, { align: "center" });
+            const fullName = `${data.prefix} ${data.firstName} ${data.lastName}`;
+            doc.setFont("THSarabunNew", "bold");
+            doc.setFontSize(29.7);
+            doc.setTextColor(255, 255, 255);
+            doc.text(fullName, 148.5, 94, { align: "center" });
 
-    const date = new Date();
-    const formattedDate = `วันที่ ${date.getDate()} ${["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()]} ${date.getFullYear() + 543}`;
-    doc.setFont("THSarabunNew", "normal");
-    doc.setFontSize(15.2);
-    doc.text(formattedDate, 148, 163, { align: "center" });
+            const date = new Date();
+            const formattedDate = `วันที่ ${date.getDate()} ${["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()]} ${date.getFullYear() + 543}`;
+            doc.setFont("THSarabunNew", "normal");
+            doc.setFontSize(15.2);
+            doc.text(formattedDate, 148, 163, { align: "center" });
 
-    doc.setFont("THSarabunNew", "bold");
-    doc.setFontSize(12);
-    doc.text(`{${certId}}`, 278, 188, { align: "right" });
+            doc.setFont("THSarabunNew", "bold");
+            doc.setFontSize(12);
+            doc.text(`{${certId}}`, 278, 188, { align: "right" });
 
-    // --- ส่วนที่แก้ไข: ดึงข้อมูลจาก Canvas โดยตรง ---
-    const qrDiv = document.createElement("div");
-    new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
-    
-    // หน่วงเวลาเล็กน้อยเพื่อให้ DOM อัปเดตทัน
-    await new Promise(resolve => setTimeout(resolve, 0)); 
+            const qrDiv = document.createElement("div");
+            new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
 
-    try {
-        const qrCanvas = qrDiv.querySelector("canvas");
-        const qrImgData = qrCanvas.toDataURL("image/png");
-        doc.addImage(qrImgData, "PNG", 24.5, 154.2);
-    } catch (e) {
-        console.error("Could not add QR Code to PDF:", e);
-    }
-
-    return doc;
-}
+            // กลับมาใช้ setTimeout แต่เพิ่มการหน่วงเวลาเล็กน้อยเพื่อให้ QR Code สร้างเสร็จแน่นอน
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    try {
+                        const qrImg = qrDiv.querySelector("img").src;
+                        if (qrImg) {
+                            doc.addImage(qrImg, "PNG", 24.5, 154.2);
+                        }
+                    } catch (e) {
+                        console.error("Could not add QR Code to PDF:", e);
+                        // ไม่ต้องหยุดการทำงานแม้ QR code จะมีปัญหา ให้สร้างใบประกาศต่อไป
+                    }
+                    resolve(doc);
+                }, 500); // หน่วงเวลา 500ms, หากยังพบปัญหาบนอุปกรณ์ช้าๆ อาจเพิ่มเป็น 1000ms
+            });
+        }
 
         function generateUUID() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -460,14 +471,27 @@ async function generateCertificate(data, certId) {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         }
 
-        // --- Event Listeners ---
+        // --- ส่วนของการกำหนด Event Listeners ---
+
         document.getElementById('start-btn').addEventListener('click', () => showCard('form-card-part1'));
+        document.getElementById('search-cert-btn').addEventListener('click', searchCertificate);
+        document.getElementById('download-cert-btn').addEventListener('click', () => {
+            if (generatedPdfDoc) {
+                generatedPdfDoc.save(`certificate-${currentStudentId}.pdf`);
+            }
+        });
+        document.getElementById('download-drive-btn').addEventListener('click', uploadToDrive);
+        document.getElementById('back-to-home-btn').addEventListener('click', () => location.reload());
+        document.getElementById('view-scores-btn').addEventListener('click', () => {
+            // ... (โค้ดแสดงคะแนน)
+        });
         document.querySelectorAll('.edit-button').forEach(btn => btn.addEventListener('click', handleEditInfo));
         document.querySelectorAll('.back-button').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const currentCard = e.target.closest('.card');
                 const currentCardId = currentCard.id;
                 let targetCardId = '';
+
                 if (currentCardId === 'form-card-part1') {
                     targetCardId = 'landing-card';
                     localStorage.removeItem(STORAGE_KEY);
@@ -477,6 +501,7 @@ async function generateCertificate(data, certId) {
                         targetCardId = `form-card-part${currentPart - 1}`;
                     }
                 }
+
                 if (targetCardId) {
                     showCard(targetCardId);
                     saveState(targetCardId, personalData, evaluationAnswers);
@@ -588,7 +613,116 @@ async function generateCertificate(data, certId) {
                     updateAllSummaries(personalData);
                 }
             }
-        })();
+        })(); // <-- จบฟังก์ชัน loadState ที่นี่
+
+        // --- ฟังก์ชันสำหรับอัปโหลดไป Google Drive ---
+        function uploadToDrive() {
+            if (!generatedPdfDoc) {
+                Swal.fire('ไม่พบไฟล์', 'ไม่พบไฟล์ใบประกาศที่สร้างไว้', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: 'กำลังอัปโหลด...',
+                text: 'กรุณารอสักครู่ ระบบกำลังบันทึกไฟล์ไปยัง Google Drive',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading() }
+            });
+
+            // แปลง PDF เป็น base64 string (เฉพาะส่วนข้อมูล)
+            const pdfBase64 = generatedPdfDoc.output('datauristring').split(',')[1];
+
+            const payload = {
+                fileName: `certificate-${currentStudentId}.pdf`,
+                pdfData: pdfBase64
+            };
+
+            fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        Swal.fire({
+                            title: 'อัปโหลดสำเร็จ!',
+                            html: `ไฟล์ของคุณถูกบันทึกไปยัง Google Drive แล้ว <br><a href="${data.fileUrl}" target="_blank">เปิดไฟล์</a>`,
+                            icon: 'success'
+                        });
+                    } else {
+                        Swal.fire('เกิดข้อผิดพลาด', `ไม่สามารถอัปโหลดไฟล์ได้: ${data.message}`, 'error');
+                    }
+                })
+                .catch(error => {
+                    Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้: ' + error, 'error');
+                });
+        }
+
+
+
+        function searchCertificate() {
+            Swal.fire({
+                title: 'ค้นหา E-Certificate',
+                html: `<input type="text" id="search-student-id" class="swal2-input" placeholder="กรอกรหัสนักศึกษา">`,
+                confirmButtonText: 'ค้นหา',
+                showCancelButton: true,
+                cancelButtonText: 'ปิดหน้าต่าง',
+                focusConfirm: false,
+                preConfirm: () => {
+                    const studentId = document.getElementById('search-student-id').value;
+                    if (!studentId) {
+                        Swal.showValidationMessage(`กรุณากรอกรหัสนักศึกษา`);
+                        return false;
+                    }
+                    return studentId;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const studentId = result.value;
+
+                    Swal.fire({
+                        title: 'กำลังค้นหา...',
+                        text: `กำลังค้นหาใบประกาศสำหรับรหัสนักศึกษา: ${studentId}`,
+                        allowOutsideClick: false,
+                        didOpen: () => { Swal.showLoading() }
+                    });
+
+                    // 1. ค้นหา Certificate ID จาก Firebase
+                    const studentRef = ref(database, 'evaluations/' + studentId);
+                    onValue(studentRef, (snapshot) => {
+                        const data = snapshot.val();
+                        if (data && data.certificateId) {
+                            const certificateId = data.certificateId;
+
+                            // 2. เมื่อเจอ ID แล้ว ให้ไปค้นหาไฟล์ใน Google Drive ผ่าน Apps Script
+                            fetch(`${APPS_SCRIPT_URL}?studentId=${studentId}`)
+                                .then(res => res.json())
+                                .then(driveResponse => {
+                                    if (driveResponse.status === 'success') {
+                                        Swal.fire({
+                                            title: 'พบใบประกาศ!',
+                                            icon: 'success',
+                                            html: `
+                                        <b>รหัสนักศึกษา:</b> ${studentId}<br>
+                                        <b>Certificate ID:</b> ${certificateId}<br><br>
+                                        <a href="${driveResponse.fileUrl}" target="_blank" class="action-button" style="display:inline-block; text-decoration:none;">เปิดไฟล์ใน Google Drive</a>
+                                    `
+                                        });
+                                    } else {
+                                        Swal.fire('ไม่พบไฟล์', 'ไม่พบไฟล์ใบประกาศใน Google Drive แต่พบข้อมูลในระบบ', 'warning');
+                                    }
+                                })
+                                .catch(err => Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับ Google Drive ได้', 'error'));
+
+                        } else {
+                            Swal.fire('ไม่พบข้อมูล', 'ไม่พบข้อมูลการประเมินสำหรับรหัสนักศึกษานี้', 'error');
+                        }
+                    }, { onlyOnce: true }); // { onlyOnce: true } เพื่อให้ดึงข้อมูลแค่ครั้งเดียว
+                }
+            });
+        }
+
+
     </script>
 
 </html>
