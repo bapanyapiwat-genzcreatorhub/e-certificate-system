@@ -413,3 +413,7 @@ form h4 {
 .hidden-made-with {
     display: none;
 }
+
+#download-cert-btn {
+    display: none;
+}
