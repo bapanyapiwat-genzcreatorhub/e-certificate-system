@@ -61,7 +61,7 @@ header h2 {
     border-radius: 10px;
     padding: 15px 20px;
     margin: 30px 0;
-    text-align: left;
+    text-align: center;
 }
 
 /* --- General Form Styles --- */
@@ -378,4 +378,38 @@ form h4 {
     flex-grow: 1;
     text-align: right;
     word-break: break-all; /* คำสั่งสำคัญ: ทำให้ข้อความยาวๆ ตัดขึ้นบรรทัดใหม่ */
+}
+
+/* --- Certificate Preview Styles --- */
+.cert-preview-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 420px; /* Adjust size as needed */
+    margin: 1.5rem auto;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+#cert-preview-img {
+    width: 100%;
+    display: block;
+}
+
+.cert-id-overlay {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-family: monospace;
+}
+
+.hidden-made-with {
+    display: none;
 }
