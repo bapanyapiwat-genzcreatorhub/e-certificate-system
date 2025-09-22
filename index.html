@@ -430,16 +430,19 @@
             doc.setFontSize(12);
             doc.text(`{${certId}}`, 278, 188, { align: "right" });
 
-            const qrDiv = document.createElement("div");
-            new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
+            // --- ส่วน QR Code ถูกเอาออกชั่วคราว ---
+            // const qrDiv = document.createElement("div");
+            // new QRCode(qrDiv, { text: certId, width: 120, height: 120 });
+            //
+            // return new Promise(resolve => {
+            //     setTimeout(() => {
+            //         const qrImg = qrDiv.querySelector("img").src;
+            //         doc.addImage(qrImg, "PNG", 24.5, 154.2);
+            //         resolve(doc);
+            //     }, 500);
+            // });
 
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    const qrImg = qrDiv.querySelector("img").src;
-                    doc.addImage(qrImg, "PNG", 24.5, 154.2);
-                    resolve(doc);
-                }, 500);
-            });
+            return doc; // คืนค่า doc โดยตรงเพื่อทดสอบ
         }
 
         function generateUUID() {
