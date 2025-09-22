@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="th">
-    <div class="hidden-made-with">Made with ❤️</div>
 
 <head>
     <meta charset="UTF-8">
@@ -444,6 +443,13 @@
             });
         }
 
+            function generateUUID() { 
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    
         function saveState(cardId, data, answers) {
             const state = { currentCardId: cardId, formData: data, answers: answers };
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -544,7 +550,7 @@
                             localStorage.removeItem(STORAGE_KEY);
                             Swal.fire({ title: 'กำลังสร้าง E-Certificate', text: 'กรุณารอสักครู่...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
 
-                            const certificateId = crypto.randomUUID();
+                            const certificateId = generateUUID();
                             await update(ref(database, `evaluations/${currentStudentId}`), { certificateId: certificateId });
 
                             const doc = await generateCertificate(personalData, certificateId);
